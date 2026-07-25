@@ -1,0 +1,78 @@
+{
+  "username": "mantu-yadav",
+  "profileUrl": "https://github.com/mantu-yadav",
+  "stats": {
+    "totalRepos": 15,
+    "totalStars": 42,
+    "totalForks": 8,
+    "followers": 12,
+    "following": 25,
+    "contributions": 520
+  },
+  "languages": [
+    { "name": "Python", "percentage": 45, "color": "#3776ab" },
+    { "name": "TypeScript", "percentage": 20, "color": "#3178c6" },
+    { "name": "JavaScript", "percentage": 15, "color": "#f7df1e" },
+    { "name": "HTML", "percentage": 10, "color": "#e34c26" },
+    { "name": "CSS", "percentage": 5, "color": "#1572b6" },
+    { "name": "Other", "percentage": 5, "color": "#6e7681" }
+  ],
+  "pinnedRepositories": [
+    {
+      "name": "codeazy",
+      "description": "AI-powered code review and automation platform",
+      "url": "https://github.com/mantu-yadav/codeazy",
+      "language": "Python",
+      "languageColor": "#3776ab",
+      "stars": 18,
+      "forks": 3,
+      "topics": ["ai", "code-review", "fastapi", "automation"],
+      "updatedAt": "2025-06-15"
+    },
+    {
+      "name": "devops-dashboard",
+      "description": "Real-time server monitoring and deployment dashboard",
+      "url": "https://github.com/mantu-yadav/devops-dashboard",
+      "language": "Python",
+      "languageColor": "#3776ab",
+      "stars": 12,
+      "forks": 2,
+      "topics": ["devops", "monitoring", "websocket", "docker"],
+      "updatedAt": "2025-05-20"
+    },
+    {
+      "name": "api-gateway",
+      "description": "Lightweight API gateway with rate limiting",
+      "url": "https://github.com/mantu-yadav/api-gateway",
+      "language": "Python",
+      "languageColor": "#3776ab",
+      "stars": 8,
+      "forks": 1,
+      "topics": ["api", "gateway", "fastapi", "redis"],
+      "updatedAt": "2025-04-10"
+    },
+    {
+      "name": "portfolio",
+      "description": "Modern developer portfolio built with Next.js",
+      "url": "https://github.com/mantu-yadav/portfolio",
+      "language": "TypeScript",
+      "languageColor": "#3178c6",
+      "stars": 4,
+      "forks": 2,
+      "topics": ["nextjs", "react", "portfolio", "threejs"],
+      "updatedAt": "2025-07-01"
+    }
+  ],
+  "recentActivity": [
+    { "type": "push", "repo": "portfolio", "message": "Update portfolio layout and components", "date": "2025-07-01" },
+    { "type": "push", "repo": "codeazy", "message": "Add AI code analysis feature", "date": "2025-06-15" },
+    { "type": "star", "repo": "fastapi", "message": "Starred fastapi/fastapi", "date": "2025-06-10" },
+    { "type": "push", "repo": "devops-dashboard", "message": "Implement WebSocket monitoring", "date": "2025-05-20" },
+    { "type": "fork", "repo": "awesome-python", "message": "Forked awesome-python/awesome-python", "date": "2025-05-05" }
+  ],
+  "contributionGraph": {
+    "totalContributions": 520,
+    "currentStreak": 15,
+    "longestStreak": 45
+  }
+}

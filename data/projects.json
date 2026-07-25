@@ -1,0 +1,210 @@
+[
+  {
+    "id": "codeazy",
+    "slug": "codeazy",
+    "featured": true,
+    "title": "CodeAzy",
+    "shortDescription": "AI-powered code review and automation platform for developers.",
+    "description": "A comprehensive platform that leverages AI to automate code reviews, suggest improvements, and streamline development workflows.",
+    "thumbnail": "/images/projects/codeazy-thumb.webp",
+    "coverImage": "/images/projects/codeazy-cover.webp",
+    "status": "In Development",
+    "year": "2025",
+    "category": "AI",
+    "technologies": ["Python", "FastAPI", "React", "TypeScript", "OpenAI API", "Docker", "PostgreSQL"],
+    "github": "https://github.com/mantu-yadav/codeazy",
+    "demo": "",
+    "documentation": "",
+    "problem": "Manual code reviews are time-consuming and inconsistent across teams.",
+    "planning": "Designed an AI-first approach with human oversight for critical decisions.",
+    "development": "Built with FastAPI backend, React frontend, and OpenAI integration.",
+    "architecture": "Microservices architecture with Docker containers and PostgreSQL database.",
+    "features": [
+      "AI-powered code analysis",
+      "Automated review suggestions",
+      "Team collaboration tools",
+      "Integration with GitHub"
+    ],
+    "challenges": [
+      "Balancing AI suggestions with human judgment",
+      "Maintaining low latency for real-time feedback"
+    ],
+    "solutions": [
+      "Implemented configurable AI thresholds",
+      "Used streaming responses for instant feedback"
+    ],
+    "results": [
+      "Reduced review time by 40%",
+      "Improved code consistency across projects"
+    ],
+    "screenshots": [],
+    "futurePlans": [
+      "Support for more programming languages",
+      "IDE plugin integration"
+    ],
+    "gallery": [],
+    "video": "",
+    "metrics": {
+      "commits": 150,
+      "files": 85,
+      "duration": "3 months",
+      "teamSize": 1
+    }
+  },
+  {
+    "id": "devops-dashboard",
+    "slug": "devops-dashboard",
+    "featured": true,
+    "title": "DevOps Dashboard",
+    "shortDescription": "Real-time monitoring and deployment dashboard for server infrastructure.",
+    "description": "A comprehensive dashboard for monitoring server health, managing deployments, and visualizing infrastructure metrics.",
+    "thumbnail": "/images/projects/devops-thumb.webp",
+    "coverImage": "/images/projects/devops-cover.webp",
+    "status": "Completed",
+    "year": "2024",
+    "category": "DevOps",
+    "technologies": ["Python", "FastAPI", "Docker", "Linux", "Nginx", "WebSocket", "Redis"],
+    "github": "https://github.com/mantu-yadav/devops-dashboard",
+    "demo": "",
+    "documentation": "",
+    "problem": "Managing multiple servers without centralized monitoring was inefficient.",
+    "planning": "Built a lightweight dashboard that aggregates metrics from multiple sources.",
+    "development": "Developed with FastAPI for real-time WebSocket updates and Docker for deployment.",
+    "architecture": "Event-driven architecture with Redis for caching and WebSocket for live updates.",
+    "features": [
+      "Real-time server monitoring",
+      "Deployment management",
+      "Log aggregation",
+      "Alert system"
+    ],
+    "challenges": [
+      "Handling real-time data from multiple sources",
+      "Ensuring low resource usage on monitoring agent"
+    ],
+    "solutions": [
+      "Implemented efficient WebSocket connections",
+      "Created lightweight Python agent for servers"
+    ],
+    "results": [
+      "Centralized monitoring for 5+ servers",
+      "Reduced incident response time by 60%"
+    ],
+    "screenshots": [],
+    "futurePlans": [
+      "Kubernetes integration",
+      "Custom alert rules"
+    ],
+    "gallery": [],
+    "video": "",
+    "metrics": {
+      "commits": 200,
+      "files": 120,
+      "duration": "4 months",
+      "teamSize": 1
+    }
+  },
+  {
+    "id": "api-gateway",
+    "slug": "api-gateway",
+    "featured": false,
+    "title": "API Gateway",
+    "shortDescription": "Lightweight API gateway with rate limiting and authentication.",
+    "description": "A fast, configurable API gateway built with FastAPI for managing multiple backend services.",
+    "thumbnail": "/images/projects/api-gateway-thumb.webp",
+    "coverImage": "/images/projects/api-gateway-cover.webp",
+    "status": "Completed",
+    "year": "2024",
+    "category": "Backend",
+    "technologies": ["Python", "FastAPI", "Redis", "Docker", "JWT", "Nginx"],
+    "github": "https://github.com/mantu-yadav/api-gateway",
+    "demo": "",
+    "documentation": "",
+    "problem": "Need for a centralized entry point for multiple microservices.",
+    "planning": "Designed a lightweight gateway with essential features.",
+    "development": "Built with FastAPI for high performance and Redis for rate limiting.",
+    "architecture": "Proxy architecture with middleware chain for auth, rate limiting, and logging.",
+    "features": [
+      "Rate limiting",
+      "JWT authentication",
+      "Request routing",
+      "Logging and monitoring"
+    ],
+    "challenges": [
+      "Maintaining low latency under high load",
+      "Implementing efficient rate limiting"
+    ],
+    "solutions": [
+      "Used Redis for fast rate limit checks",
+      "Implemented connection pooling"
+    ],
+    "results": [
+      "Handles 1000+ requests/second",
+      "Reduced backend load by 70%"
+    ],
+    "screenshots": [],
+    "futurePlans": [
+      "GraphQL support",
+      "Plugin system"
+    ],
+    "gallery": [],
+    "video": "",
+    "metrics": {
+      "commits": 80,
+      "files": 45,
+      "duration": "2 months",
+      "teamSize": 1
+    }
+  },
+  {
+    "id": "portfolio-website",
+    "slug": "portfolio-website",
+    "featured": false,
+    "title": "Portfolio Website",
+    "shortDescription": "Modern developer portfolio built with Next.js and Three.js.",
+    "description": "This very portfolio website, showcasing modern web development with animations and 3D elements.",
+    "thumbnail": "/images/projects/portfolio-thumb.webp",
+    "coverImage": "/images/projects/portfolio-cover.webp",
+    "status": "In Development",
+    "year": "2025",
+    "category": "Frontend",
+    "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Three.js", "Framer Motion"],
+    "github": "https://github.com/mantu-yadav/portfolio",
+    "demo": "",
+    "documentation": "",
+    "problem": "Need a professional online presence to showcase projects and skills.",
+    "planning": "Designed a premium, interactive portfolio with smooth animations.",
+    "development": "Built with Next.js for performance and Three.js for 3D elements.",
+    "architecture": "Static generation with client-side interactivity for animations.",
+    "features": [
+      "Responsive design",
+      "3D hero scene",
+      "Smooth animations",
+      "Dark theme"
+    ],
+    "challenges": [
+      "Optimizing Three.js performance",
+      "Achieving smooth 60fps animations"
+    ],
+    "solutions": [
+      "Used lazy loading for 3D components",
+      "Optimized animation bundle size"
+    ],
+    "results": [
+      "Lighthouse score 95+",
+      "Smooth animations across devices"
+    ],
+    "screenshots": [],
+    "futurePlans": [
+      "Blog integration",
+      "Project case studies"
+    ],
+    "gallery": [],
+    "video": "",
+    "metrics": {
+      "commits": 100,
+      "files": 60,
+      "duration": "2 months",
+      "teamSize": 1
+    }
+  }
+]
