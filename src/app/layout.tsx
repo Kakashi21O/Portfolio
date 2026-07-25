@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar/Navbar";
 import { LoadingProvider } from "@/components/loading/LoadingProvider";
 import { CursorProvider } from "@/components/cursor/CursorContext";
 import { CustomCursor } from "@/components/cursor/CustomCursor";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,13 +34,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
-        <CursorProvider>
-          <CustomCursor />
-          <LoadingProvider>
-            <Navbar />
-            {children}
-          </LoadingProvider>
-        </CursorProvider>
+        <TooltipProvider delay={300}>
+          <CursorProvider>
+            <CustomCursor />
+            <LoadingProvider>
+              <Navbar />
+              {children}
+            </LoadingProvider>
+          </CursorProvider>
+        </TooltipProvider>
       </body>
     </html>
   );
