@@ -93,11 +93,11 @@ Each feature follows this lifecycle.
 
 # Phase 2 — Project Setup
 
-- [ ] Initialize Next.js
-- [ ] Configure TypeScript
-- [ ] Configure Tailwind
-- [ ] Install shadcn/ui
-- [ ] Configure ESLint
+- [x] Initialize Next.js
+- [x] Configure TypeScript
+- [x] Configure Tailwind
+- [x] Install shadcn/ui
+- [x] Configure ESLint
 - [ ] Configure Prettier
 - [ ] Configure Husky
 - [ ] Configure Absolute Imports
