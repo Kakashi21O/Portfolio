@@ -5,6 +5,7 @@ import { TechStackSection } from "@/components/tech-stack/TechStackSection";
 import { ProjectsSection } from "@/components/projects/ProjectsSection";
 import { GitHubSection } from "@/components/github/GitHubSection";
 import { TimelineSection } from "@/components/timeline/TimelineSection";
+import { ResumeSection } from "@/components/resume/ResumeSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <ProjectsSection />
       <GitHubSection />
       <TimelineSection />
+      <ResumeSection />
     </div>
   );
 }
