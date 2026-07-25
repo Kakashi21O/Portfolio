@@ -7,6 +7,7 @@ import { GitHubSection } from "@/components/github/GitHubSection";
 import { TimelineSection } from "@/components/timeline/TimelineSection";
 import { ResumeSection } from "@/components/resume/ResumeSection";
 import { ContactSection } from "@/components/contact/ContactSection";
+import { FooterSection } from "@/components/footer/FooterSection";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <TimelineSection />
       <ResumeSection />
       <ContactSection />
+      <FooterSection />
     </div>
   );
 }
