@@ -21,10 +21,10 @@ function Icosahedron() {
     <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.8}>
       <mesh ref={meshRef} scale={1.5}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.25} />
+        <meshBasicMaterial color="#a78bfa" wireframe transparent opacity={0.35} />
         <mesh>
           <icosahedronGeometry args={[0.7, 1]} />
-          <meshBasicMaterial color="#ffffff" transparent opacity={0.06} />
+          <meshBasicMaterial color="#818cf8" transparent opacity={0.08} />
         </mesh>
       </mesh>
     </Float>
