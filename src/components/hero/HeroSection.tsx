@@ -40,7 +40,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen w-full max-w-[1400px] mx-auto flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen w-full max-w-[1400px] mx-auto flex items-center justify-center overflow-hidden">
       <AnimatedBackground />
 
       <div className="container relative z-10 px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
