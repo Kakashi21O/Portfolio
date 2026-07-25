@@ -6,15 +6,13 @@ import { LoadingScreen } from "@/components/loading/LoadingScreen";
 const SESSION_KEY = "portfolio-loaded";
 
 export function LoadingProvider({ children }: { children: React.ReactNode }) {
-  const [showLoader, setShowLoader] = useState<boolean>(true);
+  const [showLoader, setShowLoader] = useState<boolean>(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const alreadySeen = sessionStorage.getItem(SESSION_KEY);
-    if (alreadySeen) {
-      setShowLoader(false);
-    }
+    setShowLoader(!alreadySeen);
+    setMounted(true);
   }, []);
 
   const handleComplete = () => {
@@ -22,11 +20,15 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
     setShowLoader(false);
   };
 
+  // On SSR and before mount, render children directly (no loader)
+  if (!mounted) {
+    return <>{children}</>;
+  }
+
   return (
     <>
-      {showLoader && mounted && <LoadingScreen onComplete={handleComplete} />}
-      {!mounted && <LoadingScreen onComplete={handleComplete} />}
-      <div className={showLoader ? "invisible h-0 overflow-hidden" : "visible"}>{children}</div>
+      {showLoader && <LoadingScreen onComplete={handleComplete} />}
+      <div className={showLoader ? "invisible h-0 overflow-hidden" : ""}>{children}</div>
     </>
   );
 }
