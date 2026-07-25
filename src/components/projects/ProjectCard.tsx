@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, GitFork, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { TechIcon } from "@/components/tech-stack/TechIcon";
 import {
   siPython,
@@ -54,8 +55,17 @@ export function ProjectCard({ project, index, onOpenDetails }: ProjectCardProps)
       whileHover={{ y: -6 }}
       className="relative group flex flex-col h-full rounded-2xl border border-white/8 bg-white/4 backdrop-blur-xl shadow-xl shadow-black/20 overflow-hidden transition-all duration-500 hover:border-primary/30 hover:bg-white/8 hover:shadow-2xl hover:shadow-black/30"
     >
-      {/* Cover Image Placeholder */}
+      {/* Cover Image */}
       <div className="relative h-36 sm:h-48 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent overflow-hidden">
+        {project.thumbnail && (
+          <Image
+            src={project.thumbnail}
+            alt={project.title}
+            fill
+            sizes="(max-width: 640px) 100vw, 50vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
         {/* Featured Badge */}

@@ -34,6 +34,7 @@ export function Avatar({ imagePath }: AvatarProps) {
             src={imagePath} 
             alt="Mantu Yadav Avatar" 
             fill 
+            sizes="(max-width: 768px) 224px, (max-width: 1024px) 256px, 256px"
             className="object-cover relative z-10"
           />
         ) : (

@@ -72,7 +72,7 @@ export function AboutSection() {
         {/* Right Side: Avatar, Code Window & Facts */}
         <div className="lg:col-span-5 flex flex-col space-y-20 mt-8 lg:mt-0 lg:sticky lg:top-32 self-start pb-32">
           <div className="flex flex-col items-center relative">
-            <Avatar />
+            <Avatar imagePath="/images/avatar.webp" />
             <div className="w-full mt-8 transform md:translate-x-6 lg:translate-x-12 z-20">
               <CodeWindow />
             </div>
