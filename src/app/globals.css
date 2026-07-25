@@ -89,4 +89,11 @@
   html {
     @apply font-sans;
   }
+  
+  /* Hide cursor only on devices that support hover (not touch devices) */
+  @media (hover: hover) and (pointer: fine) {
+    *, *::before, *::after {
+      cursor: none !important;
+    }
+  }
 }

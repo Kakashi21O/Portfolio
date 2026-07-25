@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar/Navbar";
 import { LoadingProvider } from "@/components/loading/LoadingProvider";
+import { CursorProvider } from "@/components/cursor/CursorContext";
+import { CustomCursor } from "@/components/cursor/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +32,13 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
-        <LoadingProvider>
-          <Navbar />
-          {children}
-        </LoadingProvider>
+        <CursorProvider>
+          <CustomCursor />
+          <LoadingProvider>
+            <Navbar />
+            {children}
+          </LoadingProvider>
+        </CursorProvider>
       </body>
     </html>
   );

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useCursor } from "@/components/cursor/CursorContext";
+import { MagneticWrapper } from "@/components/cursor/MagneticWrapper";
 
 const navLinks = [
   { label: "Home",      href: "#home" },
@@ -18,6 +20,7 @@ export function Navbar() {
   const [scrolled, setScrolled]     = useState(false);
   const [menuOpen, setMenuOpen]     = useState(false);
   const [activeSection, setActive]  = useState("home");
+  const { setCursorState }          = useCursor();
 
   // Transparent → Glass on scroll
   useEffect(() => {
@@ -82,6 +85,8 @@ export function Navbar() {
                 <button
                   key={link.label}
                   onClick={() => scrollTo(link.href)}
+                  onMouseEnter={() => setCursorState("hovering_link")}
+                  onMouseLeave={() => setCursorState("default")}
                   className={cn(
                     "relative px-4 py-2 text-sm font-medium rounded-md transition-colors",
                     isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
@@ -102,12 +107,14 @@ export function Navbar() {
 
           {/* Resume Button + Mobile Toggle */}
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => scrollTo("#contact")}
-              className="hidden md:flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-all shadow-md shadow-primary/20"
-            >
-              Hire Me
-            </button>
+            <MagneticWrapper strength={15}>
+              <button
+                onClick={() => scrollTo("#contact")}
+                className="hidden md:flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-all shadow-md shadow-primary/20"
+              >
+                Hire Me
+              </button>
+            </MagneticWrapper>
 
             {/* Hamburger */}
             <button

@@ -6,6 +6,7 @@ import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { TypewriterText } from "./TypewriterText";
 import { Hero3DObject } from "./Hero3DObject";
+import { MagneticWrapper } from "@/components/cursor/MagneticWrapper";
 
 const socialLinks = [
   { icon: FaGithub,   href: "https://github.com/Kakashi21O",   label: "GitHub" },
@@ -81,30 +82,35 @@ export function HeroSection() {
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 mb-10 w-full sm:w-auto">
-            <button className="group relative inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 hover:scale-[1.03] active:scale-[0.98]">
-              View Projects
-              <span className="absolute inset-0 rounded-full ring-1 ring-primary/50" />
-            </button>
-            <button className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-white/5 px-8 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:bg-white/10 hover:border-primary/50 active:scale-[0.98]">
-              <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
-              Download Resume
-            </button>
+          <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 mb-10 w-full sm:w-auto">
+            <MagneticWrapper>
+              <button className="group relative inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 hover:scale-[1.03] active:scale-[0.98]">
+                View Projects
+                <span className="absolute inset-0 rounded-full ring-1 ring-primary/50" />
+              </button>
+            </MagneticWrapper>
+            <MagneticWrapper>
+              <button className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-white/5 px-8 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:bg-white/10 hover:border-primary/50 active:scale-[0.98]">
+                <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+                Download Resume
+              </button>
+            </MagneticWrapper>
           </motion.div>
 
           {/* Social Icons */}
           <motion.div variants={item} className="flex gap-3">
             {socialLinks.map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white/5 text-muted-foreground backdrop-blur-sm transition-all hover:border-primary/60 hover:bg-primary/10 hover:text-primary hover:scale-110"
-              >
-                <Icon size={18} />
-              </a>
+              <MagneticWrapper key={label} strength={20}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white/5 text-muted-foreground backdrop-blur-sm transition-all hover:border-primary/60 hover:bg-primary/10 hover:text-primary hover:scale-110"
+                >
+                  <Icon size={18} />
+                </a>
+              </MagneticWrapper>
             ))}
           </motion.div>
         </motion.div>
