@@ -7,6 +7,7 @@ import { CursorProvider } from "@/components/cursor/CursorContext";
 import { CustomCursor } from "@/components/cursor/CustomCursor";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { MusicPlayer } from "@/components/music/MusicPlayer";
+import { SmoothScroll } from "@/components/animations/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,9 +40,11 @@ export default function RootLayout({
           <CursorProvider>
             <CustomCursor />
             <LoadingProvider>
-              <Navbar />
-              {children}
-              <MusicPlayer />
+              <SmoothScroll>
+                <Navbar />
+                {children}
+                <MusicPlayer />
+              </SmoothScroll>
             </LoadingProvider>
           </CursorProvider>
         </TooltipProvider>
