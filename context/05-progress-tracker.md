@@ -16,7 +16,7 @@
 
 **Completion**
 
-80%
+85%
 
 ---
 
@@ -84,7 +84,7 @@ Each feature follows this lifecycle.
 - [x] Contact
 - [x] Footer
 - [x] Music
-- [ ] Animations
+- [x] Animations
 - [ ] Mobile
 - [ ] SEO
 - [ ] Future Features
@@ -283,13 +283,13 @@ Progress
 
 # Current Task
 
-Implement Animations section
+Implement Mobile responsiveness
 
 ---
 
 # Next Task
 
-Implement Mobile responsiveness.
+Implement SEO.
 
 ---
 
@@ -327,6 +327,7 @@ Every completed task must satisfy:
 - Contact section completed with form and social links using simple-icons + react-icons for brand icons (build passes, TypeScript clean).
 - Footer section completed with quick links, social links, tech stack, version info, and back-to-top button (build passes, TypeScript clean).
 - Music Player completed as floating widget with play/pause, volume, track switching, keyboard shortcuts, and localStorage persistence (build passes, TypeScript clean).
+- Animations layer added: Lenis smooth scrolling, reusable ScrollReveal wrapper, reduced-motion CSS support (build passes, TypeScript clean).
 - Progress tracker updated.
 
 ---
