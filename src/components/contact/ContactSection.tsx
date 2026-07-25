@@ -15,11 +15,11 @@ function IconSvg({ path, fill }: { path: string; fill: string }) {
 }
 
 const socialLinks = [
-  { icon: <IconSvg path={siGithub.path} fill="currentColor" />, label: "GitHub", href: "https://github.com/mantu-yadav", color: "hover:text-foreground" },
-  { icon: <FaLinkedin size={18} />, label: "LinkedIn", href: "https://linkedin.com/in/mantu-yadav", color: "hover:text-[#0a66c2]" },
-  { icon: <Mail size={18} />, label: "Email", href: "mailto:mantu@example.com", color: "hover:text-primary" },
-  { icon: <IconSvg path={siDiscord.path} fill="currentColor" />, label: "Discord", href: "#", color: "hover:text-[#5865f2]" },
-  { icon: <IconSvg path={siInstagram.path} fill="currentColor" />, label: "Instagram", href: "#", color: "hover:text-[#e4405f]" },
+  { icon: <IconSvg path={siGithub.path} fill="currentColor" />, label: "GitHub", href: "https://github.com/Kakashi21O/Kakashi21O", color: "hover:text-foreground" },
+  { icon: <FaLinkedin size={18} />, label: "LinkedIn", href: "https://www.linkedin.com/in/mantu-yadavo1", color: "hover:text-[#0a66c2]" },
+  { icon: <Mail size={18} />, label: "Email", href: "mailto:https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=kakashi7gamer@gmail.com&su=About%20Your%20Portfolio%20Website", color: "hover:text-primary" },
+  { icon: <IconSvg path={siDiscord.path} fill="currentColor" />, label: "Discord", href: "https://discord.gg/https://discord.gg/S6jbx9fs2p", color: "hover:text-[#5865f2]" },
+  { icon: <IconSvg path={siInstagram.path} fill="currentColor" />, label: "Instagram", href: "https://instagram.com/mk_yadav_10", color: "hover:text-[#e4405f]" },
   { icon: <IconSvg path={siX.path} fill="currentColor" />, label: "Twitter / X", href: "#", color: "hover:text-[#1da1f2]" },
 ];
 

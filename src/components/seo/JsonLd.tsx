@@ -9,8 +9,8 @@ const personSchema = {
   url: "https://mantuyadav.dev",
   jobTitle: "Python & Backend Developer",
   sameAs: [
-    "https://github.com/mantu-yadav",
-    "https://linkedin.com/in/mantu-yadav",
+    "https://github.com/Kakashi21O",
+    "https://www.linkedin.com/in/mantu-yadavo1",
   ],
   knowsAbout: [
     "Python",
