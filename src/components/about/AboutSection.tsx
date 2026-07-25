@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Timeline } from "./Timeline";
 import { Avatar } from "./Avatar";
 import { CodeWindow } from "./CodeWindow";
@@ -8,48 +9,75 @@ import { Interests } from "./Interests";
 import { InterestingFacts } from "./InterestingFacts";
 
 export function AboutSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Optional subtle parallax for ambient backgrounds
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
   return (
-    <section id="about" className="relative w-full min-h-screen py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto flex flex-col justify-center items-center">
-      
+    <section 
+      id="about" 
+      ref={containerRef}
+      className="relative w-full min-h-screen py-32 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto flex flex-col justify-center items-center overflow-visible"
+    >
+      {/* Ambient Background Glows */}
+      <motion.div 
+        style={{ y }}
+        className="absolute top-40 -left-20 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10" 
+      />
+      <motion.div 
+        style={{ y: useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]) }}
+        className="absolute bottom-40 -right-20 w-[30vw] h-[30vw] max-w-[400px] max-h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none -z-10" 
+      />
+
       {/* Section Introduction */}
-      <div className="w-full text-center md:text-left mb-16 md:mb-24">
-        <motion.h2 
+      <div className="w-full text-center md:text-left mb-20 md:mb-32">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center gap-4 mb-6 justify-center md:justify-start"
         >
-          About Me
-        </motion.h2>
+          <div className="h-[1px] w-12 bg-primary/50" />
+          <h2 className="text-sm font-mono text-primary uppercase tracking-[0.2em]">
+            About Me
+          </h2>
+        </motion.div>
+        
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-          className="text-lg md:text-xl text-muted-foreground max-w-2xl"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground max-w-3xl leading-tight"
         >
           My journey into programming started much earlier than I ever expected.
         </motion.p>
       </div>
 
       {/* Main Layout Grid */}
-      {/* Mobile: 1 col, Tablet: 40/60 or 50/50 depending on how we treat 'md' vs 'lg', Desktop: 50/50 */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative z-10">
         
         {/* Left Side: Timeline & Interests */}
-        <div className="md:col-span-7 lg:col-span-7 flex flex-col space-y-12">
+        <div className="lg:col-span-7 flex flex-col space-y-16">
           <Timeline />
           <Interests />
         </div>
 
         {/* Right Side: Avatar, Code Window & Facts */}
-        <div className="md:col-span-5 lg:col-span-5 flex flex-col space-y-16 mt-8 md:mt-0 sticky top-24 self-start">
-          <div className="flex flex-col items-center">
+        <div className="lg:col-span-5 flex flex-col space-y-20 mt-8 lg:mt-0 lg:sticky lg:top-32 self-start pb-32">
+          <div className="flex flex-col items-center relative">
             <Avatar />
-            <div className="w-full mt-4 transform md:translate-x-4 lg:translate-x-8">
+            <div className="w-full mt-8 transform md:translate-x-6 lg:translate-x-12 z-20">
               <CodeWindow />
             </div>
+            {/* Subtle connecting line or decoration behind them */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-border/10 rounded-full -z-10 animate-[spin_60s_linear_infinite] hidden md:block" />
           </div>
           
           <InterestingFacts />

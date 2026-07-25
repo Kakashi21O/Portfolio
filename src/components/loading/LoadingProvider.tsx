@@ -6,13 +6,15 @@ import { LoadingScreen } from "@/components/loading/LoadingScreen";
 const SESSION_KEY = "portfolio-loaded";
 
 export function LoadingProvider({ children }: { children: React.ReactNode }) {
-  // null = unknown (SSR), true = show loader, false = skip
-  const [showLoader, setShowLoader] = useState<boolean | null>(null);
+  const [showLoader, setShowLoader] = useState<boolean>(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const alreadySeen = sessionStorage.getItem(SESSION_KEY);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setShowLoader(!alreadySeen);
+    if (alreadySeen) {
+      setShowLoader(false);
+    }
   }, []);
 
   const handleComplete = () => {
@@ -20,14 +22,11 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
     setShowLoader(false);
   };
 
-  // Avoid flash: render nothing until we know
-  if (showLoader === null) return null;
-
   return (
     <>
-      {showLoader && <LoadingScreen onComplete={handleComplete} />}
-      {/* Always mount children so assets load in background */}
-      <div className={showLoader ? "invisible" : "visible"}>{children}</div>
+      {showLoader && mounted && <LoadingScreen onComplete={handleComplete} />}
+      {!mounted && <LoadingScreen onComplete={handleComplete} />}
+      <div className={showLoader ? "invisible h-0 overflow-hidden" : "visible"}>{children}</div>
     </>
   );
 }
