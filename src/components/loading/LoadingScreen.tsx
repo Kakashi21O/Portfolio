@@ -182,7 +182,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               </div>
 
               {/* Terminal body */}
-              <div className="p-6 space-y-1 min-h-[260px]">
+              <div className="p-4 sm:p-6 space-y-1 min-h-[260px] overflow-hidden">
                 {/* Boot lines */}
                 {BOOT_LINES.slice(0, visibleBoot).map((line, i) => (
                   <TerminalLine key={i} text={line.text} />

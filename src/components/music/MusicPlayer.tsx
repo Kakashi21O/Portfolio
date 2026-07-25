@@ -140,7 +140,7 @@ export function MusicPlayer() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-20 right-6 z-50 w-72 p-4 rounded-2xl border border-white/8 bg-background/90 backdrop-blur-2xl shadow-2xl shadow-black/30"
+            className="fixed bottom-20 right-6 z-50 w-64 sm:w-72 p-4 rounded-2xl border border-white/8 bg-background/90 backdrop-blur-2xl shadow-2xl shadow-black/30"
           >
             {/* Track Info */}
             <div className="flex items-center gap-3 mb-4">
