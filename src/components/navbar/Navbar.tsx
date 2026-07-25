@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, FileDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -102,14 +102,12 @@ export function Navbar() {
 
           {/* Resume Button + Mobile Toggle */}
           <div className="flex items-center gap-3">
-            <a
-              href="/resume.pdf"
-              download
-              className="hidden md:flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-full border border-primary/50 hover:border-primary hover:bg-primary/10 text-primary transition-all"
+            <button
+              onClick={() => scrollTo("#contact")}
+              className="hidden md:flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-all shadow-md shadow-primary/20"
             >
-              <FileDown className="h-3.5 w-3.5" />
-              Resume
-            </a>
+              Hire Me
+            </button>
 
             {/* Hamburger */}
             <button
@@ -144,15 +142,12 @@ export function Navbar() {
                   {link.label}
                 </button>
               ))}
-              <a
-                href="/resume.pdf"
-                download
-                className="mt-4 flex items-center gap-2 text-primary font-medium"
-                onClick={() => setMenuOpen(false)}
+              <button
+                onClick={() => scrollTo("#contact")}
+                className="mt-4 px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium text-sm"
               >
-                <FileDown className="h-4 w-4" />
-                Download Resume
-              </a>
+                Hire Me
+              </button>
             </nav>
           </motion.div>
         )}
