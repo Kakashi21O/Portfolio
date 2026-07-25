@@ -50,8 +50,6 @@ export function CustomCursor() {
     default: {
       width: 32,
       height: 32,
-      x: "-50%",
-      y: "-50%",
       backgroundColor: "transparent",
       borderColor: "hsl(var(--primary) / 0.5)",
       borderWidth: 1,
@@ -59,8 +57,6 @@ export function CustomCursor() {
     hovering_link: {
       width: 48,
       height: 48,
-      x: "-50%",
-      y: "-50%",
       backgroundColor: "hsl(var(--primary) / 0.1)",
       borderColor: "hsl(var(--primary))",
       borderWidth: 2,
@@ -68,8 +64,6 @@ export function CustomCursor() {
     hovering_button: {
       width: 64,
       height: 64,
-      x: "-50%",
-      y: "-50%",
       backgroundColor: "transparent",
       borderColor: "hsl(var(--primary) / 0.8)",
       borderWidth: 2,
@@ -78,8 +72,6 @@ export function CustomCursor() {
     magnetic: {
       width: 0,
       height: 0,
-      x: "-50%",
-      y: "-50%",
       backgroundColor: "transparent",
       borderColor: "transparent",
       borderWidth: 0,
@@ -87,8 +79,6 @@ export function CustomCursor() {
     text: {
       width: 4,
       height: 24,
-      x: "-50%",
-      y: "-50%",
       backgroundColor: "hsl(var(--primary))",
       borderColor: "transparent",
       borderWidth: 0,
@@ -132,6 +122,8 @@ export function CustomCursor() {
         style={{
           x: ringX,
           y: ringY,
+          translateX: "-50%",
+          translateY: "-50%",
           opacity: isVisible ? 1 : 0,
         }}
         variants={ringVariants}
