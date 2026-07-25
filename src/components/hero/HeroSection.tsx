@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { ChevronDown, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { TypewriterText } from "./TypewriterText";
