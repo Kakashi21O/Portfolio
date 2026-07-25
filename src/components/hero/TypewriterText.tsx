@@ -23,6 +23,7 @@ export function TypewriterText() {
 
     if (isDeleting) {
       if (text === "") {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsDeleting(false);
         setRoleIndex((prev) => (prev + 1) % roles.length);
       } else {
