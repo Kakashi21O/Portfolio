@@ -12,6 +12,7 @@ import {
   Wrench,
   FolderOpen,
 } from "lucide-react";
+import { publicPath } from "@/lib/utils";
 
 const highlights = [
   {
@@ -167,7 +168,7 @@ export function ResumeSection() {
               {/* Actions */}
               <div className="flex items-center gap-3 justify-center">
                 <a
-                  href="/resume/Mantu-Yadav-Resume.pdf"
+                  href={publicPath("/resume/Mantu-Yadav-Resume.pdf")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-primary/50 bg-primary/10 text-sm font-medium text-primary hover:bg-primary/20 hover:border-primary/70 transition-all duration-300"
@@ -177,7 +178,7 @@ export function ResumeSection() {
                   <span>Download PDF</span>
                 </a>
                 <a
-                  href="/resume/Mantu-Yadav-Resume.pdf"
+                  href={publicPath("/resume/Mantu-Yadav-Resume.pdf")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-foreground/70 hover:bg-white/10 hover:border-white/20 transition-all duration-300"

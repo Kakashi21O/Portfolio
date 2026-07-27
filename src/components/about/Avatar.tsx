@@ -1,15 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { User } from "lucide-react";
 import Image from "next/image";
 
 interface AvatarProps {
-  // TODO: Point this to the final anime avatar asset when available (e.g., "/images/anime-avatar.png")
   imagePath?: string;
 }
 
 export function Avatar({ imagePath }: AvatarProps) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const showFallback = !imagePath || imgFailed;
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -29,21 +32,22 @@ export function Avatar({ imagePath }: AvatarProps) {
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         className="w-full h-full rounded-full border border-white/10 bg-card/20 overflow-hidden flex items-center justify-center relative shadow-[0_0_30px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_40px_rgba(var(--primary-rgb),0.3)] transition-shadow duration-700 z-10"
       >
-        {imagePath ? (
-          <Image 
-            src={imagePath} 
-            alt="Mantu Yadav Avatar" 
-            fill 
-            sizes="(max-width: 768px) 224px, (max-width: 1024px) 256px, 256px"
-            className="object-cover relative z-10"
-          />
-        ) : (
+        {showFallback ? (
           <div className="relative z-10 flex flex-col items-center justify-center text-muted-foreground opacity-50 group-hover:opacity-80 transition-opacity duration-300">
             <User className="w-16 h-16 md:w-20 md:h-20 mb-2" />
             <span className="text-xs font-mono uppercase tracking-widest text-center px-4">
               Avatar Placeholder
             </span>
           </div>
+        ) : (
+          <Image
+            src={imagePath}
+            alt="Mantu Yadav Avatar"
+            fill
+            sizes="(max-width: 768px) 224px, (max-width: 1024px) 256px, 256px"
+            className="object-cover relative z-10"
+            onError={() => setImgFailed(true)}
+          />
         )}
 
         {/* Highlight inner rim */}
