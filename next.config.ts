@@ -1,12 +1,15 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
   output: "export",
-  
-  // GitHub Pages project URL:
-  // https://kakashi21o.github.io/Portfolio/
-  basePath: "/Portfolio",
-  assetPrefix: "/Portfolio/",
+
+  basePath: isProd ? "/Portfolio" : "",
+  assetPrefix: isProd ? "/Portfolio/" : "",
+
+  allowedDevOrigins: ["192.168.56.1"],
+
   images: {
     unoptimized: true,
   },
