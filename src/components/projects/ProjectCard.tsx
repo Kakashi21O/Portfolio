@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink, GitFork, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { publicPath } from "@/lib/utils";
 import { TechIcon } from "@/components/tech-stack/TechIcon";
 import {
   siPython,
@@ -59,7 +60,7 @@ export function ProjectCard({ project, index, onOpenDetails }: ProjectCardProps)
       <div className="relative h-36 sm:h-48 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent overflow-hidden">
         {project.thumbnail && (
           <Image
-            src={project.thumbnail}
+            src={publicPath(project.thumbnail)}
             alt={project.title}
             fill
             sizes="(max-width: 640px) 100vw, 50vw"
