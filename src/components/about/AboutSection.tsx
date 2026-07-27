@@ -7,6 +7,7 @@ import { Avatar } from "./Avatar";
 import { CodeWindow } from "./CodeWindow";
 import { Interests } from "./Interests";
 import { InterestingFacts } from "./InterestingFacts";
+import { publicPath } from "@/lib/utils";
 
 export function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -72,7 +73,7 @@ export function AboutSection() {
         {/* Right Side: Avatar, Code Window & Facts */}
         <div className="lg:col-span-5 flex flex-col space-y-20 mt-8 lg:mt-0 lg:sticky lg:top-32 self-start pb-32">
           <div className="flex flex-col items-center relative">
-            <Avatar imagePath="/images/avatar.webp" />
+            <Avatar imagePath={publicPath("/images/avatar.webp")} />
             <div className="w-full mt-8 transform md:translate-x-6 lg:translate-x-12 z-20">
               <CodeWindow />
             </div>
