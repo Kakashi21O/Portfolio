@@ -54,7 +54,7 @@ export function ProjectCard({ project, index, onOpenDetails }: ProjectCardProps)
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -6 }}
-      className="relative group flex flex-col h-full rounded-2xl border border-white/8 bg-white/4 backdrop-blur-xl shadow-xl shadow-black/20 overflow-hidden transition-all duration-500 hover:border-primary/30 hover:bg-white/8 hover:shadow-2xl hover:shadow-black/30"
+      className="relative group flex flex-col h-full rounded-2xl border border-white/8 bg-[#151515] overflow-hidden transition-all duration-500 hover:border-primary/30 hover:bg-[#1a1a1a]"
     >
       {/* Cover Image */}
       <div className="relative h-36 sm:h-48 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent overflow-hidden">

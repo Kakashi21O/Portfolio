@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { Timeline } from "./Timeline";
 import { Avatar } from "./Avatar";
 import { CodeWindow } from "./CodeWindow";
@@ -10,28 +9,16 @@ import { InterestingFacts } from "./InterestingFacts";
 import { publicPath } from "@/lib/utils";
 
 export function AboutSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Optional subtle parallax for ambient backgrounds
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
   return (
     <section 
       id="about" 
-      ref={containerRef}
       className="relative w-full min-h-screen py-32 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto flex flex-col justify-center items-center overflow-visible"
     >
       {/* Ambient Background Glows */}
-      <motion.div 
-        style={{ y }}
+      <div 
         className="absolute top-40 -left-20 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10" 
       />
-      <motion.div 
-        style={{ y: useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]) }}
+      <div 
         className="absolute bottom-40 -right-20 w-[30vw] h-[30vw] max-w-[400px] max-h-[400px] bg-accent/5 rounded-full blur-[100px] pointer-events-none -z-10" 
       />
 
@@ -77,8 +64,6 @@ export function AboutSection() {
             <div className="w-full mt-8 transform md:translate-x-6 lg:translate-x-12 z-20">
               <CodeWindow />
             </div>
-            {/* Subtle connecting line or decoration behind them */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-border/10 rounded-full -z-10 animate-[spin_60s_linear_infinite] hidden md:block" />
           </div>
           
           <InterestingFacts />

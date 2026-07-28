@@ -1,32 +1,20 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { techCategories } from "./data";
 import { TechCard } from "./TechCard";
 
 export function TechStackSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-  const glow1Y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const glow2Y = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
-
   return (
     <section
       id="tech-stack"
-      ref={containerRef}
       className="relative w-full min-h-screen py-32 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto flex flex-col justify-center items-center overflow-visible"
     >
       {/* Ambient background glows */}
-      <motion.div
-        style={{ y: glow1Y }}
+      <div
         className="absolute top-40 -right-24 w-[35vw] h-[35vw] max-w-[450px] max-h-[450px] bg-accent/5 rounded-full blur-[130px] pointer-events-none -z-10"
       />
-      <motion.div
-        style={{ y: glow2Y }}
+      <div
         className="absolute bottom-40 -left-24 w-[25vw] h-[25vw] max-w-[350px] max-h-[350px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10"
       />
 

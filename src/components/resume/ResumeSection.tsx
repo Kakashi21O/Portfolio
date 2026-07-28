@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Download,
   ExternalLink,
@@ -48,27 +47,16 @@ const highlights = [
 ];
 
 export function ResumeSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-  const glow1Y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const glow2Y = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
-
   return (
     <section
       id="resume"
-      ref={containerRef}
       className="relative w-full min-h-screen py-32 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto flex flex-col justify-center items-center overflow-visible"
     >
       {/* Ambient glows */}
-      <motion.div
-        style={{ y: glow1Y }}
+      <div
         className="absolute top-40 -right-24 w-[35vw] h-[35vw] max-w-[450px] max-h-[450px] bg-primary/5 rounded-full blur-[130px] pointer-events-none -z-10"
       />
-      <motion.div
-        style={{ y: glow2Y }}
+      <div
         className="absolute bottom-40 -left-24 w-[25vw] h-[25vw] max-w-[350px] max-h-[350px] bg-accent/5 rounded-full blur-[100px] pointer-events-none -z-10"
       />
 
@@ -114,7 +102,7 @@ export function ResumeSection() {
                 ease: [0.16, 1, 0.3, 1],
               }}
               whileHover={{ y: -3 }}
-              className="relative group p-5 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-xl shadow-xl shadow-black/20 transition-all duration-500 hover:border-primary/30 hover:bg-white/8"
+              className="relative group p-5 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm shadow-xl shadow-black/20 transition-all duration-500 hover:border-primary/30 hover:bg-white/8"
             >
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -146,7 +134,7 @@ export function ResumeSection() {
           transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col"
         >
-          <div className="relative group flex flex-col items-center justify-center p-10 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-xl shadow-xl shadow-black/20 transition-all duration-500 hover:border-primary/30 hover:bg-white/8 flex-1">
+          <div className="relative group flex flex-col items-center justify-center p-10 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm shadow-xl shadow-black/20 transition-all duration-500 hover:border-primary/30 hover:bg-white/8 flex-1">
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/8 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
             <div className="relative z-10 text-center">

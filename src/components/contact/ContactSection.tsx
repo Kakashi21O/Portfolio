@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { Send, Mail, CheckCircle, AlertCircle } from "lucide-react";
 import { siGithub, siX, siDiscord, siInstagram } from "simple-icons";
 import { FaLinkedin } from "react-icons/fa";
@@ -24,7 +24,6 @@ const socialLinks = [
 ];
 
 export function ContactSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [formState, setFormState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [formData, setFormData] = useState({
     name: "",
@@ -32,13 +31,6 @@ export function ContactSection() {
     subject: "",
     message: "",
   });
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-  const glow1Y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const glow2Y = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,16 +52,13 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      ref={containerRef}
       className="relative w-full min-h-screen py-32 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto flex flex-col justify-center items-center overflow-visible"
     >
       {/* Ambient glows */}
-      <motion.div
-        style={{ y: glow1Y }}
+      <div
         className="absolute top-40 -right-24 w-[35vw] h-[35vw] max-w-[450px] max-h-[450px] bg-primary/5 rounded-full blur-[130px] pointer-events-none -z-10"
       />
-      <motion.div
-        style={{ y: glow2Y }}
+      <div
         className="absolute bottom-40 -left-24 w-[25vw] h-[25vw] max-w-[350px] max-h-[350px] bg-accent/5 rounded-full blur-[100px] pointer-events-none -z-10"
       />
 
@@ -225,7 +214,7 @@ export function ContactSection() {
           transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-2"
         >
-          <div className="p-6 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-xl shadow-xl shadow-black/20">
+          <div className="p-6 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm shadow-xl shadow-black/20">
             <h3 className="text-lg font-semibold text-foreground tracking-tight mb-2">
               Get in Touch
             </h3>

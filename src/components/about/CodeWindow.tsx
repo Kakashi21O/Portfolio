@@ -61,7 +61,7 @@ export function CodeWindow() {
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full max-w-lg mx-auto rounded-xl overflow-hidden border border-white/10 bg-[#0d0d0d]/80 backdrop-blur-xl shadow-2xl shadow-black/60 font-mono text-sm group"
+      className="relative w-full max-w-lg mx-auto rounded-xl overflow-hidden border border-white/10 bg-[#0d0d0d]/80 backdrop-blur-sm shadow-2xl shadow-black/60 font-mono text-sm group"
     >
       {/* Subtle outer glow that activates on hover */}
       <div className="absolute -inset-[1px] bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 rounded-xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-700 -z-10" />

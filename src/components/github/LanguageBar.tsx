@@ -14,7 +14,7 @@ export function LanguageBar({ languages }: LanguageBarProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="p-5 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-xl shadow-xl shadow-black/20"
+      className="p-5 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm shadow-xl shadow-black/20"
     >
       <h3 className="text-lg font-semibold text-foreground tracking-tight mb-4">
         Languages
