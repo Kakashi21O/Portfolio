@@ -7,6 +7,38 @@ import { cn } from "@/lib/utils";
 import { useCursor } from "@/components/cursor/CursorContext";
 import { MagneticWrapper } from "@/components/cursor/MagneticWrapper";
 
+function LocalTime() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setTime(
+        now.toLocaleTimeString("en-GB", {
+          timeZone: "Asia/Kolkata",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        })
+      );
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(167,139,250,0.6)] animate-pulse" />
+      <span className="font-mono text-sm font-medium tracking-wider text-foreground">
+        {time || "--:--:--"}
+      </span>
+    </>
+  );
+}
+
 const navLinks = [
   { label: "Home",      href: "#home" },
   { label: "About",     href: "#about" },
@@ -108,16 +140,23 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Resume Button + Mobile Toggle */}
+          {/* Time Display + Mobile Toggle */}
           <div className="flex items-center gap-3">
-            <MagneticWrapper strength={15}>
-              <button
-                onClick={() => scrollTo("#contact")}
-                className="hidden md:flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-all shadow-md shadow-primary/20"
-              >
-                Hire Me
-              </button>
-            </MagneticWrapper>
+            <motion.div
+              initial={false}
+              animate={{
+                opacity: activeSection === "home" ? 1 : 0,
+                pointerEvents: activeSection === "home" ? "auto" : "none",
+              }}
+              transition={{ duration: 0.3 }}
+              className="hidden md:block"
+            >
+              <MagneticWrapper strength={15}>
+                <div className="flex items-center gap-2.5 px-2 py-1.5 rounded-full bg-transparent">
+                  <LocalTime />
+                </div>
+              </MagneticWrapper>
+            </motion.div>
 
             {/* Hamburger */}
             <button
@@ -152,12 +191,17 @@ export function Navbar() {
                   {link.label}
                 </button>
               ))}
-              <button
-                onClick={() => scrollTo("#contact")}
-                className="mt-4 px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium text-sm"
+              <motion.div
+                initial={false}
+                animate={{
+                  opacity: activeSection === "home" ? 1 : 0,
+                  pointerEvents: activeSection === "home" ? "auto" : "none",
+                }}
+                transition={{ duration: 0.3 }}
+                className="mt-4 flex items-center gap-2.5 px-4 py-2 rounded-full bg-transparent"
               >
-                Hire Me
-              </button>
+                <LocalTime />
+              </motion.div>
             </nav>
           </motion.div>
         )}
