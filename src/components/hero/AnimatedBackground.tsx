@@ -35,12 +35,10 @@ export function AnimatedBackground() {
       {/* Center-top subtle accent */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[300px] rounded-full bg-[oklch(0.68_0.22_270)] opacity-[0.06] blur-[80px]" />
 
-      {/* Mouse spotlight — uses x/y transforms instead of left/top, no React renders */}
-      <motion.div
-        className="absolute w-[600px] h-[600px] rounded-full -translate-x-1/2 -translate-y-1/2"
+      {/* Static spotlight — removes continuous React/Framer Motion updates on mouse move */}
+      <div
+        className="absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full -translate-x-1/2 -translate-y-1/2"
         style={{
-          x: spotlightX,
-          y: spotlightY,
           background: "radial-gradient(circle, oklch(0.68 0.22 270 / 0.08) 0%, transparent 70%)",
         }}
       />
