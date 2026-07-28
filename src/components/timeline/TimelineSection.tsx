@@ -191,7 +191,6 @@ export function TimelineSection() {
           <motion.div
             style={{ height: lineHeight }}
             className="w-full origin-top rounded-full"
-            css={{}}
           >
             <div className="w-full h-full bg-gradient-to-b from-primary/70 via-accent/50 to-transparent" />
           </motion.div>
