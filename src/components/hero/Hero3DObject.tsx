@@ -32,7 +32,7 @@ function Icosahedron() {
 
 export function Hero3DObject() {
   return (
-    <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center">
+    <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center" style={{ contentVisibility: "auto" }}>
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }} frameloop="always">
         <Icosahedron />
       </Canvas>
