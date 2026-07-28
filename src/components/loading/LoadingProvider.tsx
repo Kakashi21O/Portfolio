@@ -10,8 +10,8 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const alreadySeen = sessionStorage.getItem(SESSION_KEY);
-    setShowLoader(!alreadySeen);
+    // const alreadySeen = sessionStorage.getItem(SESSION_KEY);
+    setShowLoader(true); // Always show for now so you can see the effect!
     setMounted(true);
   }, []);
 
