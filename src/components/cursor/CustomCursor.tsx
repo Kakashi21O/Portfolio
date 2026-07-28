@@ -14,8 +14,8 @@ export function CustomCursor() {
   const mouseY = useMotionValue(-100);
 
   // Smooth springs for the cursor ring
-  const ringX = useSpring(mouseX, { stiffness: 400, damping: 28 });
-  const ringY = useSpring(mouseY, { stiffness: 400, damping: 28 });
+  const ringX = useSpring(mouseX, { stiffness: 500, damping: 30 });
+  const ringY = useSpring(mouseY, { stiffness: 500, damping: 30 });
 
   useEffect(() => {
     // Detect touch devices

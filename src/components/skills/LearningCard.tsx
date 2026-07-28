@@ -15,7 +15,7 @@ export function LearningCard() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className="relative group rounded-2xl border border-amber-500/20 bg-amber-500/5 backdrop-blur-xl shadow-xl shadow-black/20 p-6 overflow-hidden col-span-full md:col-span-2 lg:col-span-3 transition-all duration-500 hover:border-amber-500/40 hover:shadow-2xl"
+      className="relative group rounded-2xl border border-amber-500/20 bg-amber-500/5 backdrop-blur-sm shadow-xl shadow-black/20 p-6 overflow-hidden col-span-full md:col-span-2 lg:col-span-3 transition-all duration-500 hover:border-amber-500/40 hover:shadow-2xl"
     >
       {/* Ambient glow */}
       <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-amber-500/10 blur-[80px] pointer-events-none" />

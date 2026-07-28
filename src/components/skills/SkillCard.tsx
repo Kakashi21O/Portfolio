@@ -17,7 +17,7 @@ export function SkillCard({ category, index }: SkillCardProps) {
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -4 }}
-      className="relative group flex flex-col h-full rounded-2xl border border-white/8 bg-white/4 backdrop-blur-xl shadow-xl shadow-black/20 p-6 overflow-hidden transition-all duration-500 hover:border-primary/30 hover:bg-white/8 hover:shadow-2xl hover:shadow-black/30"
+      className="relative group flex flex-col h-full rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm shadow-xl shadow-black/20 p-6 overflow-hidden transition-all duration-500 hover:border-primary/30 hover:bg-white/8 hover:shadow-2xl hover:shadow-black/30"
     >
       {/* Hover gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

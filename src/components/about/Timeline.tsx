@@ -30,7 +30,7 @@ export function Timeline() {
 
             {/* Timeline Content */}
             <div className={`w-full lg:w-[47%] pl-16 lg:pl-0 ${isEven ? "lg:pr-12" : "lg:pl-12"}`}>
-              <Card className="relative overflow-hidden border-white/5 bg-white/5 backdrop-blur-xl shadow-2xl shadow-black/20 group hover:bg-white/10 transition-all duration-500 rounded-2xl">
+              <Card className="relative overflow-hidden border-white/5 bg-white/5 backdrop-blur-sm shadow-2xl shadow-black/20 group hover:bg-white/10 transition-all duration-500 rounded-2xl">
                 {/* Subtle gradient glow behind the card on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
