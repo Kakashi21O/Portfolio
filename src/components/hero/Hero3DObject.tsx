@@ -10,7 +10,6 @@ function Icosahedron() {
 
   useFrame((state) => {
     if (!meshRef.current) return;
-    // Mouse reactive subtle movement — no THREE.Clock used
     const targetX = (state.mouse.x * Math.PI) / 10;
     const targetY = (state.mouse.y * Math.PI) / 10;
     meshRef.current.rotation.y += 0.05 * (targetX - meshRef.current.rotation.y);
@@ -34,7 +33,6 @@ function Icosahedron() {
 export function Hero3DObject() {
   return (
     <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center">
-      {/* frameloop="demand" prevents THREE.Clock from ticking unless needed */}
       <Canvas camera={{ position: [0, 0, 5], fov: 45 }} frameloop="always">
         <Icosahedron />
       </Canvas>

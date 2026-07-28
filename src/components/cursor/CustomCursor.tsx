@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useCursor } from "./CursorContext";
 
@@ -8,6 +8,7 @@ export function CustomCursor() {
   const { cursorState } = useCursor();
   const [isVisible, setIsVisible] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const hasShownRef = useRef(false);
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -26,7 +27,10 @@ export function CustomCursor() {
     const moveCursor = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      if (!hasShownRef.current) {
+        hasShownRef.current = true;
+        setIsVisible(true);
+      }
     };
 
     const handleMouseLeave = () => setIsVisible(false);
@@ -41,7 +45,7 @@ export function CustomCursor() {
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, [mouseX, mouseY]);
 
   if (isTouchDevice || cursorState === "hidden") return null;
 

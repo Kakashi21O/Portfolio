@@ -3,10 +3,20 @@
 import { motion, Variants } from "framer-motion";
 import { Download } from "lucide-react";
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import dynamic from "next/dynamic";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { TypewriterText } from "./TypewriterText";
-import { Hero3DObject } from "./Hero3DObject";
 import { MagneticWrapper } from "@/components/cursor/MagneticWrapper";
+
+const Hero3DObject = dynamic(
+  () => import("./Hero3DObject").then((mod) => mod.Hero3DObject),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center" />
+    ),
+  }
+);
 
 const socialLinks = [
   { icon: FaGithub,   href: "https://github.com/Kakashi21O",   label: "GitHub" },

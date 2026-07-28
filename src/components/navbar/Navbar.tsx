@@ -29,23 +29,26 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Active section via Intersection Observer
+  // Active section via single Intersection Observer
   useEffect(() => {
     const ids = navLinks.map((l) => l.href.replace("#", ""));
-    const observers: IntersectionObserver[] = [];
+    const elements = ids.map((id) => document.getElementById(id)).filter(Boolean) as Element[];
 
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActive(id); },
-        { rootMargin: "-40% 0px -55% 0px" }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
+    if (elements.length === 0) return;
 
-    return () => observers.forEach((o) => o.disconnect());
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   const scrollTo = (href: string) => {

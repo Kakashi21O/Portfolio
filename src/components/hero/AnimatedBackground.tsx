@@ -1,16 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function AnimatedBackground() {
-  const [mouse, setMouse] = useState({ x: -999, y: -999 });
+  const mouseX = useMotionValue(-999);
+  const mouseY = useMotionValue(-999);
+
+  // Smooth the spotlight position with a light spring
+  const spotlightX = useSpring(mouseX, { stiffness: 80, damping: 20 });
+  const spotlightY = useSpring(mouseY, { stiffness: 80, damping: 20 });
 
   useEffect(() => {
-    const onMove = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
+    const onMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+  }, [mouseX, mouseY]);
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -27,15 +35,14 @@ export function AnimatedBackground() {
       {/* Center-top subtle accent */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[300px] rounded-full bg-[oklch(0.68_0.22_270)] opacity-[0.06] blur-[80px]" />
 
-      {/* Mouse spotlight */}
+      {/* Mouse spotlight — uses x/y transforms instead of left/top, no React renders */}
       <motion.div
         className="absolute w-[600px] h-[600px] rounded-full -translate-x-1/2 -translate-y-1/2"
-        animate={{
-          left: mouse.x,
-          top: mouse.y,
+        style={{
+          x: spotlightX,
+          y: spotlightY,
           background: "radial-gradient(circle, oklch(0.68 0.22 270 / 0.08) 0%, transparent 70%)",
         }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.5 }}
       />
 
       {/* Noise grain */}
