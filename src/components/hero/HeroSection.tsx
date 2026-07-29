@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback } from "react";
 import { motion, Variants } from "framer-motion";
 import { Download } from "lucide-react";
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
@@ -7,6 +8,7 @@ import dynamic from "next/dynamic";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { TypewriterText } from "./TypewriterText";
 import { MagneticWrapper } from "@/components/cursor/MagneticWrapper";
+import { publicPath } from "@/lib/utils";
 
 const Hero3DObject = dynamic(
   () => import("./Hero3DObject").then((mod) => mod.Hero3DObject),
@@ -38,6 +40,10 @@ const item: Variants = {
 export function HeroSection() {
   const scrollDown = () =>
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+
+  const scrollToProjects = useCallback(() => {
+    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+  }, []);
 
   return (
     <section
@@ -94,16 +100,23 @@ export function HeroSection() {
           {/* CTA Buttons */}
           <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 mb-10 w-full sm:w-auto">
             <MagneticWrapper>
-              <button className="group relative inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 hover:scale-[1.03] active:scale-[0.98]">
+              <button
+                onClick={scrollToProjects}
+                className="group relative inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 hover:scale-[1.03] active:scale-[0.98]"
+              >
                 View Projects
                 <span className="absolute inset-0 rounded-full ring-1 ring-primary/50" />
               </button>
             </MagneticWrapper>
             <MagneticWrapper>
-              <button className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-white/5 px-8 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:bg-white/10 hover:border-primary/50 active:scale-[0.98]">
+              <a
+                href={publicPath("/resume/Mantu-Yadav-Resume.pdf")}
+                download
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-white/5 px-8 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:bg-white/10 hover:border-primary/50 active:scale-[0.98]"
+              >
                 <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
                 Download Resume
-              </button>
+              </a>
             </MagneticWrapper>
           </motion.div>
 
