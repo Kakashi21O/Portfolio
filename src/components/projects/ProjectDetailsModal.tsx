@@ -120,20 +120,14 @@ export function ProjectDetailsModal({
   const projectId = project && typeof project === "object" ? project.id : "";
 
   useEffect(() => {
-    if (!isOpen) return;
-
-    scrollRef.current?.scrollTo(0, 0);
-    lenis?.stop();
-
-    const bodyOverflow = document.body.style.overflow;
-    const htmlOverflow = document.documentElement.style.overflow;
-
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      lenis?.stop();
+      scrollRef.current?.scrollTo(0, 0);
+    }
 
     return () => {
-      document.body.style.overflow = bodyOverflow;
-      document.documentElement.style.overflow = htmlOverflow;
+      document.body.style.overflow = "";
       lenis?.start();
     };
   }, [isOpen, lenis]);
@@ -166,8 +160,8 @@ export function ProjectDetailsModal({
             onClick={(e) => e.stopPropagation()}
           >
             {/* Hero Banner */}
-            <div className="relative h-64 bg-gradient-to-br from-primary/20 via-accent/10 to-transparent overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--background))] via-transparent to-transparent" />
+            <div className="relative bg-gradient-to-br from-primary/20 via-accent/10 to-transparent">
+              <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))/70] to-transparent pointer-events-none" />
 
               {/* Close Button */}
               <button
@@ -179,7 +173,7 @@ export function ProjectDetailsModal({
               </button>
 
               {/* Project Info */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+              <div className="relative w-full p-8 z-10">
                 <div className="flex items-center gap-3 mb-3">
                   {project.featured && (
                     <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-lg border border-primary/50 bg-primary/20 text-primary">
@@ -209,7 +203,7 @@ export function ProjectDetailsModal({
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mt-4">
+                <div className="flex flex-wrap gap-2 mt-5">
                   {project.technologies.map((tech) => {
                     const icon = iconMap[tech];
                     return (
