@@ -150,8 +150,8 @@ export function ProjectCard({ project, index, onOpenDetails }: ProjectCardProps)
         }}
         className={`relative h-full cursor-pointer rounded-2xl border transition-colors duration-500 overflow-hidden ${
           isHovered
-            ? "border-primary/30"
-            : "border-white/8"
+            ? "border-primary/30 bg-[#1a1a1a]"
+            : "border-white/8 bg-[#151515]"
         }`}
         role="button"
         tabIndex={0}

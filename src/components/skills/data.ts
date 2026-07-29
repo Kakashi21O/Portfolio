@@ -1,4 +1,4 @@
-import type { SkillCategory } from "./types";
+import type { SkillCategory, ExpertiseArea, Skill } from "./types";
 
 export const skillCategories: SkillCategory[] = [
   {
@@ -86,10 +86,62 @@ export const skillCategories: SkillCategory[] = [
   },
 ];
 
-export const currentlyLearning = [
-  { name: "DevOps & Kubernetes", emoji: "☸️", tooltip: "Exploring container orchestration and infrastructure at scale." },
-  { name: "TypeScript", emoji: "🔷", tooltip: "Leveling up frontend type safety across all projects." },
-  { name: "Next.js App Router", emoji: "▲", tooltip: "Mastering the latest Next.js architecture patterns." },
-  { name: "System Design", emoji: "🏗️", tooltip: "Designing large-scale distributed systems." },
-  { name: "Transformers", emoji: "🔬", tooltip: "Deep-diving into the ML model architecture that powers modern AI." },
+export const expertiseAreas: ExpertiseArea[] = [
+  {
+    id: "backend-dev",
+    number: "01",
+    title: "Python Backend",
+    description: "Building scalable APIs, automation systems, and server-side logic with Python.",
+    icon: "⚙️",
+    technologies: ["Python", "FastAPI", "Flask", "REST APIs", "WebSockets"],
+    motif: "backend",
+  },
+  {
+    id: "devops-infra",
+    number: "02",
+    title: "DevOps & Infrastructure",
+    description: "Containerization, CI/CD pipelines, Linux administration, and reliable deployments.",
+    icon: "🚀",
+    technologies: ["Docker", "Linux", "Nginx", "GitHub Actions", "CI/CD"],
+    motif: "devops",
+  },
+  {
+    id: "frontend-dev",
+    number: "03",
+    title: "Frontend",
+    description: "Component-driven interfaces with modern React, Next.js, and utility-first styling.",
+    icon: "🖥️",
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    motif: "frontend",
+  },
+  {
+    id: "ai-auto",
+    number: "04",
+    title: "AI & Automation",
+    description: "Integrating LLMs, prompt engineering, and building intelligent automation pipelines.",
+    icon: "🤖",
+    technologies: ["OpenAI API", "Hugging Face", "AI Automation", "Prompt Engineering"],
+    motif: "ai",
+  },
+];
+
+export const exploringSkills: Skill[] = [
+  { name: "DevOps & Kubernetes", emoji: "☸️", level: "Exploring", tooltip: "Exploring container orchestration and infrastructure at scale." },
+  { name: "TypeScript", emoji: "🔷", level: "Exploring", tooltip: "Leveling up frontend type safety across all projects." },
+  { name: "Next.js App Router", emoji: "▲", level: "Exploring", tooltip: "Mastering the latest Next.js architecture patterns." },
+  { name: "System Design", emoji: "🏗️", level: "Exploring", tooltip: "Designing large-scale distributed systems." },
+  { name: "Transformers", emoji: "🔬", level: "Exploring", tooltip: "Deep-diving into the ML model architecture that powers modern AI." },
+];
+
+export const currentlyLearning = exploringSkills.map(({ name, emoji, tooltip }) => ({ name, emoji, tooltip }));
+
+export const techCategories = [
+  { id: "all", label: "All" },
+  { id: "languages", label: "Languages" },
+  { id: "backend", label: "Backend" },
+  { id: "frontend", label: "Frontend" },
+  { id: "devops", label: "DevOps" },
+  { id: "ai", label: "AI" },
+  { id: "tools", label: "Tools" },
+  { id: "exploring", label: "Exploring" },
 ];

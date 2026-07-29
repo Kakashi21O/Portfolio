@@ -6,12 +6,24 @@ export interface Skill {
   level: SkillLevel;
   tooltip: string;
   featured?: boolean;
+  iconPath?: string;
+  iconColor?: string;
 }
 
 export interface SkillCategory {
   id: string;
   title: string;
   description: string;
-  icon: string; // emoji icon for the category
+  icon: string;
   skills: Skill[];
+}
+
+export interface ExpertiseArea {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  icon: string;
+  technologies: string[];
+  motif: "backend" | "frontend" | "devops" | "ai" | "languages";
 }

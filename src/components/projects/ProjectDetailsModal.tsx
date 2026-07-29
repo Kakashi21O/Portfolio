@@ -118,16 +118,31 @@ export function ProjectDetailsModal({
   const scrollRef = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
   const projectId = project && typeof project === "object" ? project.id : "";
+  const scrollYRef = useRef(0);
 
   useEffect(() => {
     if (isOpen) {
+      scrollYRef.current = window.scrollY;
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollYRef.current}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+
       lenis?.stop();
       scrollRef.current?.scrollTo(0, 0);
     }
 
     return () => {
       document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollYRef.current);
+
       lenis?.start();
     };
   }, [isOpen, lenis]);
@@ -142,7 +157,6 @@ export function ProjectDetailsModal({
       {isOpen && (
         <motion.div
           ref={scrollRef}
-          data-lenis-prevent
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -160,8 +174,8 @@ export function ProjectDetailsModal({
             onClick={(e) => e.stopPropagation()}
           >
             {/* Hero Banner */}
-            <div className="relative bg-gradient-to-br from-primary/20 via-accent/10 to-transparent">
-              <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--background))] via-[hsl(var(--background))/70] to-transparent pointer-events-none" />
+            <div className="relative h-64 bg-gradient-to-br from-primary/20 via-accent/10 to-transparent overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--background))] via-transparent to-transparent" />
 
               {/* Close Button */}
               <button
@@ -173,7 +187,7 @@ export function ProjectDetailsModal({
               </button>
 
               {/* Project Info */}
-              <div className="relative w-full p-8 z-10">
+              <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
                 <div className="flex items-center gap-3 mb-3">
                   {project.featured && (
                     <span className="text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-lg border border-primary/50 bg-primary/20 text-primary">
@@ -203,7 +217,7 @@ export function ProjectDetailsModal({
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mt-5">
+                <div className="flex flex-wrap gap-2 mt-4">
                   {project.technologies.map((tech) => {
                     const icon = iconMap[tech];
                     return (
