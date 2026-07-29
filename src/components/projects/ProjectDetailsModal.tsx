@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLenis } from "lenis/react";
 import {
   ExternalLink,
   GitFork,
@@ -114,22 +115,52 @@ export function ProjectDetailsModal({
   isOpen,
   onClose,
 }: ProjectDetailsModalProps) {
-  if (!isOpen) return null;
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const lenis = useLenis();
+  const projectId = project && typeof project === "object" ? project.id : "";
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    scrollRef.current?.scrollTo(0, 0);
+    lenis?.stop();
+
+    const bodyOverflow = document.body.style.overflow;
+    const htmlOverflow = document.documentElement.style.overflow;
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = bodyOverflow;
+      document.documentElement.style.overflow = htmlOverflow;
+      lenis?.start();
+    };
+  }, [isOpen, lenis]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    scrollRef.current?.scrollTo(0, 0);
+  }, [isOpen, projectId]);
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          ref={scrollRef}
+          data-lenis-prevent
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          style={{ overscrollBehavior: "contain" }}
           className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/80 backdrop-blur-sm"
           onClick={onClose}
         >
           <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.98 }}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 40, scale: 0.98 }}
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full max-w-4xl mx-4 my-8 rounded-2xl border border-white/10 bg-[hsl(var(--background))] shadow-2xl shadow-black/40 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
