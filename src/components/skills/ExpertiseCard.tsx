@@ -19,73 +19,6 @@ const motifColors: Record<ExpertiseArea["motif"], { glow: string; border: string
   languages:{ glow: "rgba(167,139,250,", border: "rgba(167,139,250,", tag: "text-primary/60",    tagBg: "bg-primary/[0.03]",    accent: "primary" },
 };
 
-function Motif({ type }: { type: ExpertiseArea["motif"] }) {
-
-  if (type === "backend") {
-    return (
-      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.008]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
-        <circle cx="80" cy="80" r="24" stroke="currentColor" strokeWidth="0.5" />
-        <circle cx="200" cy="50" r="16" stroke="currentColor" strokeWidth="0.5" />
-        <circle cx="320" cy="90" r="20" stroke="currentColor" strokeWidth="0.5" />
-        <line x1="100" y1="72" x2="188" y2="54" stroke="currentColor" strokeWidth="0.3" />
-        <line x1="212" y1="58" x2="304" y2="82" stroke="currentColor" strokeWidth="0.3" />
-        <circle cx="80" cy="200" r="6" stroke="currentColor" strokeWidth="0.3" />
-        <circle cx="320" cy="220" r="6" stroke="currentColor" strokeWidth="0.3" />
-        <line x1="80" y1="80" x2="80" y2="194" stroke="currentColor" strokeWidth="0.2" strokeDasharray="4 4" />
-        <line x1="320" y1="90" x2="320" y2="214" stroke="currentColor" strokeWidth="0.2" strokeDasharray="4 4" />
-      </svg>
-    );
-  }
-  if (type === "devops") {
-    return (
-      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.008]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
-        <rect x="60" y="60" width="80" height="40" rx="4" stroke="currentColor" strokeWidth="0.5" />
-        <rect x="60" y="130" width="80" height="40" rx="4" stroke="currentColor" strokeWidth="0.5" />
-        <rect x="260" y="60" width="80" height="40" rx="4" stroke="currentColor" strokeWidth="0.5" />
-        <rect x="260" y="130" width="80" height="40" rx="4" stroke="currentColor" strokeWidth="0.5" />
-        <line x1="140" y1="80" x2="260" y2="80" stroke="currentColor" strokeWidth="0.3" />
-        <line x1="100" y1="100" x2="100" y2="130" stroke="currentColor" strokeWidth="0.3" strokeDasharray="4 4" />
-        <line x1="300" y1="100" x2="300" y2="130" stroke="currentColor" strokeWidth="0.3" strokeDasharray="4 4" />
-        <path d="M 160 200 h 80 v 40 h -80 z" stroke="currentColor" strokeWidth="0.3" fill="none" />
-        <line x1="200" y1="200" x2="200" y2="240" stroke="currentColor" strokeWidth="0.2" strokeDasharray="2 2" />
-      </svg>
-    );
-  }
-  if (type === "frontend") {
-    return (
-      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.008]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
-        <rect x="80" y="60" width="240" height="40" rx="2" stroke="currentColor" strokeWidth="0.4" />
-        <rect x="80" y="110" width="100" height="120" rx="2" stroke="currentColor" strokeWidth="0.4" />
-        <rect x="190" y="110" width="130" height="55" rx="2" stroke="currentColor" strokeWidth="0.4" />
-        <rect x="190" y="175" width="130" height="55" rx="2" stroke="currentColor" strokeWidth="0.4" />
-        <line x1="120" y1="75" x2="120" y2="85" stroke="currentColor" strokeWidth="0.5" />
-        <line x1="135" y1="75" x2="135" y2="85" stroke="currentColor" strokeWidth="0.5" />
-        <line x1="150" y1="75" x2="150" y2="85" stroke="currentColor" strokeWidth="0.5" />
-      </svg>
-    );
-  }
-  if (type === "ai") {
-    return (
-      <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.008]" viewBox="0 0 400 300" fill="none" aria-hidden="true">
-        <circle cx="100" cy="80" r="6" stroke="currentColor" strokeWidth="0.4" />
-        <circle cx="200" cy="50" r="6" stroke="currentColor" strokeWidth="0.4" />
-        <circle cx="300" cy="80" r="6" stroke="currentColor" strokeWidth="0.4" />
-        <circle cx="150" cy="150" r="6" stroke="currentColor" strokeWidth="0.4" />
-        <circle cx="250" cy="150" r="6" stroke="currentColor" strokeWidth="0.4" />
-        <circle cx="200" cy="200" r="6" stroke="currentColor" strokeWidth="0.4" />
-        <line x1="104" y1="76" x2="196" y2="54" stroke="currentColor" strokeWidth="0.3" />
-        <line x1="204" y1="54" x2="296" y2="76" stroke="currentColor" strokeWidth="0.3" />
-        <line x1="104" y1="84" x2="146" y2="146" stroke="currentColor" strokeWidth="0.3" />
-        <line x1="296" y1="84" x2="254" y2="146" stroke="currentColor" strokeWidth="0.3" />
-        <line x1="154" y1="154" x2="196" y2="196" stroke="currentColor" strokeWidth="0.3" />
-        <line x1="246" y1="154" x2="204" y2="196" stroke="currentColor" strokeWidth="0.3" />
-        <circle cx="200" cy="200" r="24" stroke="currentColor" strokeWidth="0.2" strokeDasharray="3 3" />
-      </svg>
-    );
-  }
-  return null;
-}
-
 export const ExpertiseCard = memo(function ExpertiseCard({ area, index }: ExpertiseCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
@@ -170,9 +103,6 @@ export const ExpertiseCard = memo(function ExpertiseCard({ area, index }: Expert
             background: `linear-gradient(90deg, transparent, ${mc.border}0.12), transparent)`,
           }}
         />
-
-        {/* Background motif */}
-        <Motif type={area.motif} />
 
         {/* Content layers with depth */}
         <div className="relative z-10 flex flex-col h-full gap-3">
