@@ -54,9 +54,14 @@ export function ProjectsSection() {
           className="flex items-center gap-4 mb-6 justify-center md:justify-start"
         >
           <div className="h-[1px] w-12 bg-primary/50" />
-          <h2 className="text-sm font-mono text-primary uppercase tracking-[0.2em]">
-            Projects
-          </h2>
+          <div className="flex items-center gap-3">
+            <h2 className="text-sm font-mono text-primary uppercase tracking-[0.2em]">
+              Projects
+            </h2>
+            <span className="text-[10px] font-mono text-muted-foreground/30 tracking-widest">
+              / {String(filteredProjects.length).padStart(2, "0")}
+            </span>
+          </div>
         </motion.div>
 
         <motion.p
@@ -66,7 +71,17 @@ export function ProjectsSection() {
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground max-w-3xl leading-tight"
         >
-          Real projects that solve real problems and teach real lessons.
+          Selected Work &amp; Engineering Projects
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-3 text-sm text-muted-foreground/50 max-w-xl font-mono"
+        >
+          Real systems built from scratch, each with its own engineering story.
         </motion.p>
       </div>
 
@@ -105,12 +120,20 @@ export function ProjectsSection() {
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => (
-            <ProjectCard
+            <motion.div
               key={project.id}
-              project={project}
-              index={index}
-              onOpenDetails={setSelectedProject}
-            />
+              layout
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ProjectCard
+                project={project}
+                index={index}
+                onOpenDetails={setSelectedProject}
+              />
+            </motion.div>
           ))}
         </AnimatePresence>
       </div>
