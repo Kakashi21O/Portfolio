@@ -34,14 +34,15 @@ export function MusicPlayer() {
   useEffect(() => {
     const audio = new Audio();
     audio.loop = true;
-    audio.volume = volume;
     audioRef.current = audio;
 
     const saved = loadState();
     if (saved) {
-      if (typeof saved.trackIndex === "number") setTrackIndex(saved.trackIndex);
-      if (typeof saved.volume === "number") setVolume(saved.volume);
-      if (typeof saved.muted === "boolean") setMuted(saved.muted);
+      setTimeout(() => {
+        if (typeof saved.trackIndex === "number") setTrackIndex(saved.trackIndex);
+        if (typeof saved.volume === "number") setVolume(saved.volume);
+        if (typeof saved.muted === "boolean") setMuted(saved.muted);
+      }, 0);
     }
 
     return () => {
@@ -59,6 +60,7 @@ export function MusicPlayer() {
       audio.src = track.src;
       if (isPlaying) audio.play().catch(() => {});
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trackIndex]);
 
   // Sync volume
@@ -76,22 +78,10 @@ export function MusicPlayer() {
         STORAGE_KEY,
         JSON.stringify({ trackIndex, volume, muted })
       );
-    } catch (e) {
+    } catch {
       console.warn("Storage access denied");
     }
   }, [trackIndex, volume, muted]);
-
-  // Keyboard shortcuts
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
-      if (e.key === "m" || e.key === "M") {
-        togglePlay();
-      }
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [isPlaying]);
 
   const togglePlay = useCallback(() => {
     const audio = audioRef.current;
@@ -111,6 +101,19 @@ export function MusicPlayer() {
     }
     setIsPlaying((p) => !p);
   }, [isPlaying, trackIndex]);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if (e.key === "m" || e.key === "M") {
+        togglePlay();
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [togglePlay]);
+
 
   const nextTrack = useCallback(() => {
     setTrackIndex((i) => (i + 1) % TRACKS.length);

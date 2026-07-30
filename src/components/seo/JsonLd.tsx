@@ -25,14 +25,6 @@ const personSchema = {
 };
 
 export function JsonLd() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
   return (
     <script
       type="application/ld+json"

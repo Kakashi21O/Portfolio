@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useMotionValue } from "framer-motion";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 export function AnimatedBackground() {
@@ -10,8 +10,6 @@ export function AnimatedBackground() {
   // Only create motion values on desktop — avoids unnecessary computation on mobile
   const mouseX = useMotionValue(-999);
   const mouseY = useMotionValue(-999);
-  const spotlightX = useSpring(mouseX, { stiffness: 80, damping: 20 });
-  const spotlightY = useSpring(mouseY, { stiffness: 80, damping: 20 });
 
   useEffect(() => {
     if (isMobile) return;

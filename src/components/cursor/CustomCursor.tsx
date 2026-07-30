@@ -20,7 +20,7 @@ export function CustomCursor() {
   useEffect(() => {
     // Detect touch devices
     if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) {
-      setIsTouchDevice(true);
+      setTimeout(() => setIsTouchDevice(true), 0);
       return;
     }
 

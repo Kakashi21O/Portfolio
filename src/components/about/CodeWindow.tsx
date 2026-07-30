@@ -51,7 +51,7 @@ export function CodeWindow() {
         return () => clearTimeout(timeout);
       }
     } else {
-      setIsTyping(false);
+      setTimeout(() => setIsTyping(false), 0);
     }
   }, [currentLineIndex, currentCharIndex, isTyping]);
 

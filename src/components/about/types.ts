@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export interface TimelineChapter {
   id: string;
   title: string;

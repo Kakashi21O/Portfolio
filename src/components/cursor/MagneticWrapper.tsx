@@ -23,8 +23,6 @@ export function MagneticWrapper({
   const rectRef = useRef({ left: 0, top: 0, width: 0, height: 0 });
   const { setCursorState } = useCursor();
 
-  // On mobile, render children directly without magnetic effect
-  if (isMobile !== false) return <div className={`inline-block ${className}`}>{children}</div>;
 
   // Use MotionValues + Springs instead of React state — no renders on mousemove
   const x = useMotionValue(0);
@@ -56,6 +54,9 @@ export function MagneticWrapper({
     y.set(0);
     setCursorState("default");
   }, [x, y, setCursorState]);
+
+  // On mobile, render children directly without magnetic effect
+  if (isMobile !== false) return <div className={`inline-block ${className}`}>{children}</div>;
 
   return (
     <motion.div

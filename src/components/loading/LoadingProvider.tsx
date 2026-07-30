@@ -11,14 +11,16 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // const alreadySeen = sessionStorage.getItem(SESSION_KEY);
-    setShowLoader(true); // Always show for now so you can see the effect!
-    setMounted(true);
+    setTimeout(() => {
+      setShowLoader(true); // Always show for now so you can see the effect!
+      setMounted(true);
+    }, 0);
   }, []);
 
   const handleComplete = () => {
     try {
       sessionStorage.setItem(SESSION_KEY, "true");
-    } catch (e) {
+    } catch {
       console.warn("Storage access denied");
     }
     setShowLoader(false);

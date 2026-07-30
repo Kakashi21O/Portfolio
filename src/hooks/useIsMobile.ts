@@ -7,9 +7,9 @@ export function useIsMobile(): boolean | undefined {
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px), (hover: none) and (pointer: coarse)");
-    setIsMobile(mq.matches);
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mq.addEventListener("change", handler);
+    setTimeout(() => setIsMobile(mq.matches), 0);
     return () => mq.removeEventListener("change", handler);
   }, []);
 
