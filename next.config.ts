@@ -6,10 +6,13 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
 
+  basePath: isProd ? "/Portfolio" : "",
+  assetPrefix: isProd ? "/Portfolio/" : "",
+
   allowedDevOrigins: ["192.168.56.1"],
 
   env: {
-    NEXT_PUBLIC_BASE_PATH: "",
+    NEXT_PUBLIC_BASE_PATH: isProd ? "/Portfolio" : "",
   },
 
   images: {
