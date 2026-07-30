@@ -71,10 +71,14 @@ export function MusicPlayer() {
   // Persist state
   useEffect(() => {
     if (typeof window === "undefined") return;
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({ trackIndex, volume, muted })
-    );
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ trackIndex, volume, muted })
+      );
+    } catch (e) {
+      console.warn("Storage access denied");
+    }
   }, [trackIndex, volume, muted]);
 
   // Keyboard shortcuts

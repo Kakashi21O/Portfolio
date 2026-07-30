@@ -9,6 +9,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { MusicPlayer } from "@/components/music/MusicPlayer";
 import { SmoothScroll } from "@/components/animations/SmoothScroll";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ErrorBoundary } from "@/components/error/ErrorBoundary";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -99,16 +100,18 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <JsonLd />
         <TooltipProvider delay={300}>
-          <CursorProvider>
-            <CustomCursor />
-            <LoadingProvider>
-              <SmoothScroll>
-                <Navbar />
-                {children}
-                <MusicPlayer />
-              </SmoothScroll>
-            </LoadingProvider>
-          </CursorProvider>
+          <ErrorBoundary>
+            <CursorProvider>
+              <CustomCursor />
+              <LoadingProvider>
+                <SmoothScroll>
+                  <Navbar />
+                  {children}
+                  <MusicPlayer />
+                </SmoothScroll>
+              </LoadingProvider>
+            </CursorProvider>
+          </ErrorBoundary>
         </TooltipProvider>
       </body>
     </html>

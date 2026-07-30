@@ -4,14 +4,12 @@ const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   output: "export",
-
-  basePath: isProd ? "/Portfolio" : "",
-  assetPrefix: isProd ? "/Portfolio/" : "",
+  trailingSlash: true,
 
   allowedDevOrigins: ["192.168.56.1"],
 
   env: {
-    NEXT_PUBLIC_BASE_PATH: isProd ? "/Portfolio" : "",
+    NEXT_PUBLIC_BASE_PATH: "",
   },
 
   images: {

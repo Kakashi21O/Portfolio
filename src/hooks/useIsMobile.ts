@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-export function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = useState(false);
+export function useIsMobile(): boolean | undefined {
+  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px), (hover: none) and (pointer: coarse)");

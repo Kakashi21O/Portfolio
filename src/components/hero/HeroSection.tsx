@@ -148,7 +148,7 @@ export function HeroSection() {
         </motion.div>
 
         {/* ── Right: 3D Visual ── */}
-        {!isMobile && (
+        {isMobile === false && (
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}

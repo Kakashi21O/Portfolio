@@ -6,7 +6,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const isMobile = useIsMobile();
 
-  if (isMobile) return <>{children}</>;
+  if (isMobile !== false) return <>{children}</>;
 
   return (
     <ReactLenis

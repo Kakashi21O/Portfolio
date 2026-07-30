@@ -16,7 +16,11 @@ export function LoadingProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const handleComplete = () => {
-    sessionStorage.setItem(SESSION_KEY, "true");
+    try {
+      sessionStorage.setItem(SESSION_KEY, "true");
+    } catch (e) {
+      console.warn("Storage access denied");
+    }
     setShowLoader(false);
   };
 
