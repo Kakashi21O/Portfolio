@@ -16,12 +16,12 @@ function IconSvg({ path, fill }: { path: string; fill: string }) {
 }
 
 const socialLinks = [
-  { icon: <IconSvg path={siGithub.path} fill="currentColor" />, label: "GitHub", href: "https://github.com/Kakashi21O/Kakashi21O", accent: "rgba(148,163,184," },
-  { icon: <FaLinkedin size={18} />, label: "LinkedIn", href: "https://www.linkedin.com/in/mantu-yadavo1", accent: "rgba(10,102,194," },
-  { icon: <Mail size={18} />, label: "Email", href: "mailto:kakashi7gamer@gmail.com?subject=About%20Your%20Portfolio", accent: "rgba(167,139,250," },
-  { icon: <IconSvg path={siDiscord.path} fill="currentColor" />, label: "Discord", href: "https://discord.gg/S6jbx9fs2p", accent: "rgba(88,101,242," },
-  { icon: <IconSvg path={siInstagram.path} fill="currentColor" />, label: "Instagram", href: "https://instagram.com/mk_yadav_10", accent: "rgba(228,64,95," },
-  { icon: <IconSvg path={siX.path} fill="currentColor" />, label: "Twitter / X", href: "#", accent: "rgba(29,161,242," },
+  { icon: <IconSvg path={siGithub.path} fill="currentColor" />, label: "GitHub", href: "https://github.com/Kakashi21O/Kakashi21O", accent: "rgba(148,163,184,", color: "#94a3b8" },
+  { icon: <FaLinkedin size={18} />, label: "LinkedIn", href: "https://www.linkedin.com/in/mantu-yadavo1", accent: "rgba(10,102,194,", color: "#0a66c2" },
+  { icon: <Mail size={18} />, label: "Email", href: "https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=kakashi7gamer@gmail.com&su=About%20Your%20Portfolio", accent: "rgba(167,139,250,", color: "#a78bfa" },
+  { icon: <IconSvg path={siDiscord.path} fill="currentColor" />, label: "Discord", href: "https://discord.gg/S6jbx9fs2p", accent: "rgba(88,101,242,", color: "#5865f2" },
+  { icon: <IconSvg path={siInstagram.path} fill="currentColor" />, label: "Instagram", href: "https://instagram.com/mk_yadav_10", accent: "rgba(228,64,95,", color: "#e4405f" },
+  { icon: <IconSvg path={siX.path} fill="currentColor" />, label: "Twitter / X", href: "#", accent: "rgba(29,161,242,", color: "#1da1f2" },
 ];
 
 const springConfig = { stiffness: 250, damping: 25, mass: 0.5 };
@@ -378,6 +378,7 @@ function FormCard() {
 
 function SocialCard() {
   const { ref, isHovered, hasTilt, rotateX, rotateY, liftY, handlePointerMove, handlePointerEnter, handlePointerLeave } = useTilt();
+  const [hoverIdx, setHoverIdx] = useState<number | null>(null);
 
   return (
     <motion.div
@@ -428,30 +429,55 @@ function SocialCard() {
           </p>
 
           <div className="space-y-3">
-            {socialLinks.map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="group/link relative flex items-center gap-3 p-3 rounded-xl border border-white/5 bg-white/3 text-muted-foreground/60 hover:text-foreground hover:bg-white/8 transition-all duration-300 overflow-hidden"
-                aria-label={`Contact on ${link.label}`}
-              >
-                {/* Link glimmer */}
-                <div
-                  className="absolute inset-0 rounded-xl opacity-0 group-hover/link:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ background: `radial-gradient(circle at 50% 0%, ${link.accent}0.1), transparent 70%)` }}
-                />
-                <div className="relative z-10 flex items-center gap-3 w-full">
-                  <span className="transition-transform duration-300 group-hover/link:scale-110">{link.icon}</span>
-                  <span className="text-sm font-medium">{link.label}</span>
-                </div>
-              </motion.a>
-            ))}
+            {socialLinks.map((link, i) => {
+              const active = hoverIdx === i;
+              return (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  onMouseEnter={() => setHoverIdx(i)}
+                  onMouseLeave={() => setHoverIdx(null)}
+                  className="relative flex items-center gap-3 p-3 rounded-xl border border-white/5 bg-white/3 text-muted-foreground/60 hover:bg-white/10 hover:border-white/20 transition-all duration-300 overflow-hidden"
+                  aria-label={`Contact on ${link.label}`}
+                >
+                  {/* Link glimer */}
+                  <div
+                    className="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-500"
+                    style={{
+                      opacity: active ? 1 : 0,
+                      background: `radial-gradient(circle at 50% 0%, ${link.accent}0.25), transparent 70%)`,
+                    }}
+                  />
+                  <div
+                    className="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-700"
+                    style={{
+                      opacity: active ? 1 : 0,
+                      background: `radial-gradient(circle at 50% 50%, ${link.accent}0.08), transparent 80%)`,
+                    }}
+                  />
+                  <div className="relative z-10 flex items-center gap-3 w-full">
+                    <span
+                      className="transition-all duration-300"
+                      style={{ color: active ? link.color : undefined, scale: active ? "1.1" : "1" }}
+                    >
+                      {link.icon}
+                    </span>
+                    <span
+                      className="text-sm font-medium transition-colors duration-300"
+                      style={{ color: active ? link.color : undefined }}
+                    >
+                      {link.label}
+                    </span>
+                  </div>
+                </motion.a>
+              );
+            })}
           </div>
         </div>
       </motion.div>
