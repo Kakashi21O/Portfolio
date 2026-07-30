@@ -12,19 +12,16 @@ interface MagneticWrapperProps {
   cursorType?: "hovering_link" | "hovering_button" | "magnetic";
 }
 
-export function MagneticWrapper({
+function MagneticContent({
   children,
   className = "",
   strength = 15,
   cursorType = "hovering_button"
 }: MagneticWrapperProps) {
-  const isMobile = useIsMobile();
   const ref = useRef<HTMLDivElement>(null);
   const rectRef = useRef({ left: 0, top: 0, width: 0, height: 0 });
   const { setCursorState } = useCursor();
 
-
-  // Use MotionValues + Springs instead of React state — no renders on mousemove
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
@@ -41,7 +38,6 @@ export function MagneticWrapper({
   }, [x, y, strength]);
 
   const handleEnter = useCallback(() => {
-    // Cache the bounding rect on enter — no layout read on every mousemove
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
       rectRef.current = { left: rect.left, top: rect.top, width: rect.width, height: rect.height };
@@ -55,9 +51,6 @@ export function MagneticWrapper({
     setCursorState("default");
   }, [x, y, setCursorState]);
 
-  // On mobile, render children directly without magnetic effect
-  if (isMobile !== false) return <div className={`inline-block ${className}`}>{children}</div>;
-
   return (
     <motion.div
       ref={ref}
@@ -69,5 +62,28 @@ export function MagneticWrapper({
     >
       {children}
     </motion.div>
+  );
+}
+
+export function MagneticWrapper({
+  children,
+  className = "",
+  strength = 15,
+  cursorType = "hovering_button"
+}: MagneticWrapperProps) {
+  const isMobile = useIsMobile();
+
+  if (isMobile !== false) {
+    return <div className={`inline-block ${className}`}>{children}</div>;
+  }
+
+  return (
+    <MagneticContent
+      className={className}
+      strength={strength}
+      cursorType={cursorType}
+    >
+      {children}
+    </MagneticContent>
   );
 }
