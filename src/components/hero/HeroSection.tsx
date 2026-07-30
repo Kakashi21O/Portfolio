@@ -61,7 +61,7 @@ export function HeroSection() {
           variants={container}
           initial="hidden"
           animate="visible"
-          className="flex flex-col items-center text-center lg:items-start lg:text-left pt-24 lg:pt-0 order-2 lg:order-1"
+          className="flex flex-col items-center text-center lg:items-start lg:text-left max-md:pt-0 pt-24 lg:pt-0 order-2 lg:order-1"
         >
           {/* Mobile Logo */}
           {isMobile && (
