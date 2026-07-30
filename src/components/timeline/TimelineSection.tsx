@@ -42,14 +42,14 @@ function TimelineEntry({
 
   return (
     <motion.div
-      initial={isMobile ? false : { opacity: 0, x: isLeft ? -60 : 60, y: 20 }}
-      whileInView={isMobile ? undefined : { opacity: 1, x: 0, y: 0 }}
+      initial={isMobile !== false ? false : { opacity: 0, x: isLeft ? -60 : 60, y: 20 }}
+      whileInView={isMobile !== false ? undefined : { opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
       className={`relative flex items-center gap-6 md:gap-10 ${
         isLeft ? "md:flex-row" : "md:flex-row-reverse"
       } flex-row`}
-      style={isMobile ? undefined : { perspective: 1200 }}
+      style={isMobile !== false ? undefined : { perspective: 1200 }}
     >
       {/* ── Content Card ─────────────────────────── */}
       <div className={`flex-1 ${isLeft ? "md:flex md:justify-end" : ""}`}>
@@ -57,7 +57,7 @@ function TimelineEntry({
           ref={cardRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          style={isMobile ? {} : { rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
+          style={isMobile !== false ? {} : { rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
           className="relative group p-5 rounded-2xl border border-white/[0.09] bg-white/[0.03] backdrop-blur-sm shadow-xl shadow-black/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] hover:shadow-2xl hover:shadow-black/40 cursor-default w-full md:max-w-[340px]"
         >
           {/* Glimmer on hover */}
@@ -74,7 +74,7 @@ function TimelineEntry({
           />
 
           {/* 3-D elevated content layer */}
-          <div style={isMobile ? {} : { transform: "translateZ(16px)" }} className="relative z-10">
+          <div style={isMobile !== false ? {} : { transform: "translateZ(16px)" }} className="relative z-10">
             <div
               className="text-[10px] font-mono uppercase tracking-widest mb-1.5 font-medium"
               style={{ color: `${item.color}cc` }}
@@ -94,11 +94,11 @@ function TimelineEntry({
       {/* ── Center Spine Dot ─────────────────────── */}
       <div className="relative z-10 flex-shrink-0 flex flex-col items-center">
         <motion.div
-          initial={isMobile ? false : { scale: 0, opacity: 0 }}
-          whileInView={isMobile ? undefined : { scale: 1, opacity: 1 }}
+          initial={isMobile !== false ? false : { scale: 0, opacity: 0 }}
+          whileInView={isMobile !== false ? undefined : { scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: index * 0.07 + 0.2, ease: [0.16, 1, 0.3, 1] }}
-          whileHover={isMobile ? undefined : { scale: 1.25 }}
+          whileHover={isMobile !== false ? undefined : { scale: 1.25 }}
           className="w-10 h-10 rounded-full border-2 flex items-center justify-center text-lg shadow-lg transition-shadow duration-300"
           style={{
             borderColor: `${item.color}99`,
@@ -142,7 +142,7 @@ export function TimelineSection() {
       className="relative w-full min-h-screen py-32 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto flex flex-col justify-center items-center overflow-visible"
     >
       {/* Parallax ambient glows — static on mobile */}
-      {isMobile ? (
+      {isMobile !== false ? (
         <>
           <div className="absolute top-40 -right-24 w-[30vw] h-[30vw] max-w-[420px] max-h-[420px] bg-primary/5 rounded-full blur-[140px] pointer-events-none -z-10" />
           <div className="absolute bottom-40 -left-24 w-[22vw] h-[22vw] max-w-[320px] max-h-[320px] bg-accent/4 rounded-full blur-[120px] pointer-events-none -z-10" />
@@ -176,7 +176,7 @@ export function TimelineSection() {
           ref={spineRef}
           className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-white/[0.06] -translate-x-1/2"
         >
-          {!isMobile && (
+          {isMobile === false && (
             <>
               <motion.div
                 style={{ height: lineHeight }}

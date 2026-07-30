@@ -33,7 +33,7 @@ export function ScrollReveal({
   const isMobile = useIsMobile();
   const { x, y } = offsets[direction];
 
-  if (isMobile) return <div className={className}>{children}</div>;
+  if (isMobile !== false) return <div className={className}>{children}</div>;
 
   return (
     <motion.div
