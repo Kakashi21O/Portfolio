@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type Direction = "up" | "down" | "left" | "right";
 
@@ -29,7 +30,10 @@ export function ScrollReveal({
   className,
   once = true,
 }: ScrollRevealProps) {
+  const isMobile = useIsMobile();
   const { x, y } = offsets[direction];
+
+  if (isMobile) return <div className={className}>{children}</div>;
 
   return (
     <motion.div

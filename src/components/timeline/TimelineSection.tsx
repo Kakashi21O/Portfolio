@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import { timelineData } from "./data";
 import type { TimelineItem } from "./data";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 /* ─── Per-entry card with 3-D tilt ─────────────────────────────── */
 function TimelineEntry({
@@ -15,6 +16,7 @@ function TimelineEntry({
   index: number;
   isLeft: boolean;
 }) {
+  const isMobile = useIsMobile();
   const cardRef = useRef<HTMLDivElement>(null);
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
@@ -23,6 +25,7 @@ function TimelineEntry({
   const ry = useSpring(rotateY, springConfig);
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (isMobile) return;
     const el = cardRef.current;
     if (!el) return;
     const { left, top, width, height } = el.getBoundingClientRect();
@@ -39,14 +42,14 @@ function TimelineEntry({
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: isLeft ? -60 : 60, y: 20 }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      initial={isMobile ? false : { opacity: 0, x: isLeft ? -60 : 60, y: 20 }}
+      whileInView={isMobile ? undefined : { opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
       className={`relative flex items-center gap-6 md:gap-10 ${
         isLeft ? "md:flex-row" : "md:flex-row-reverse"
       } flex-row`}
-      style={{ perspective: 1200 }}
+      style={isMobile ? undefined : { perspective: 1200 }}
     >
       {/* ── Content Card ─────────────────────────── */}
       <div className={`flex-1 ${isLeft ? "md:flex md:justify-end" : ""}`}>
@@ -54,7 +57,7 @@ function TimelineEntry({
           ref={cardRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
+          style={isMobile ? {} : { rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
           className="relative group p-5 rounded-2xl border border-white/[0.09] bg-white/[0.03] backdrop-blur-sm shadow-xl shadow-black/30 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] hover:shadow-2xl hover:shadow-black/40 cursor-default w-full md:max-w-[340px]"
         >
           {/* Glimmer on hover */}
@@ -71,7 +74,7 @@ function TimelineEntry({
           />
 
           {/* 3-D elevated content layer */}
-          <div style={{ transform: "translateZ(16px)" }} className="relative z-10">
+          <div style={isMobile ? {} : { transform: "translateZ(16px)" }} className="relative z-10">
             <div
               className="text-[10px] font-mono uppercase tracking-widest mb-1.5 font-medium"
               style={{ color: `${item.color}cc` }}
@@ -91,11 +94,11 @@ function TimelineEntry({
       {/* ── Center Spine Dot ─────────────────────── */}
       <div className="relative z-10 flex-shrink-0 flex flex-col items-center">
         <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+          initial={isMobile ? false : { scale: 0, opacity: 0 }}
+          whileInView={isMobile ? undefined : { scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: index * 0.07 + 0.2, ease: [0.16, 1, 0.3, 1] }}
-          whileHover={{ scale: 1.25 }}
+          whileHover={isMobile ? undefined : { scale: 1.25 }}
           className="w-10 h-10 rounded-full border-2 flex items-center justify-center text-lg shadow-lg transition-shadow duration-300"
           style={{
             borderColor: `${item.color}99`,
@@ -115,6 +118,7 @@ function TimelineEntry({
 
 /* ─── Section ───────────────────────────────────────────────────── */
 export function TimelineSection() {
+  const isMobile = useIsMobile();
   const containerRef = useRef<HTMLDivElement>(null);
   const spineRef = useRef<HTMLDivElement>(null);
 
@@ -137,70 +141,57 @@ export function TimelineSection() {
       ref={containerRef}
       className="relative w-full min-h-screen py-32 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto flex flex-col justify-center items-center overflow-visible"
     >
-      {/* Parallax ambient glows */}
-      <motion.div
-        style={{ y: glow1Y }}
-        className="absolute top-40 -right-24 w-[30vw] h-[30vw] max-w-[420px] max-h-[420px] bg-primary/5 rounded-full blur-[140px] pointer-events-none -z-10"
-      />
-      <motion.div
-        style={{ y: glow2Y }}
-        className="absolute bottom-40 -left-24 w-[22vw] h-[22vw] max-w-[320px] max-h-[320px] bg-accent/4 rounded-full blur-[120px] pointer-events-none -z-10"
-      />
+      {/* Parallax ambient glows — static on mobile */}
+      {isMobile ? (
+        <>
+          <div className="absolute top-40 -right-24 w-[30vw] h-[30vw] max-w-[420px] max-h-[420px] bg-primary/5 rounded-full blur-[140px] pointer-events-none -z-10" />
+          <div className="absolute bottom-40 -left-24 w-[22vw] h-[22vw] max-w-[320px] max-h-[320px] bg-accent/4 rounded-full blur-[120px] pointer-events-none -z-10" />
+        </>
+      ) : (
+        <>
+          <motion.div style={{ y: glow1Y }} className="absolute top-40 -right-24 w-[30vw] h-[30vw] max-w-[420px] max-h-[420px] bg-primary/5 rounded-full blur-[140px] pointer-events-none -z-10" />
+          <motion.div style={{ y: glow2Y }} className="absolute bottom-40 -left-24 w-[22vw] h-[22vw] max-w-[320px] max-h-[320px] bg-accent/4 rounded-full blur-[120px] pointer-events-none -z-10" />
+        </>
+      )}
 
       {/* ── Section Header ───────────────────────── */}
       <div className="w-full text-center md:text-left mb-20 md:mb-28">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-4 mb-5 justify-center md:justify-start"
-        >
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="h-px w-12 bg-primary/50 origin-left"
-          />
+        <div className="flex items-center gap-4 mb-5 justify-center md:justify-start">
+          <div className="h-px w-12 bg-primary/50" />
           <h2 className="text-xs font-mono text-primary/70 uppercase tracking-[0.25em]">
             Journey
           </h2>
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground max-w-3xl leading-tight"
-        >
+        <p className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground max-w-3xl leading-tight">
           From curiosity to engineering —{" "}
           <span className="text-foreground/40">the path so far.</span>
-        </motion.p>
+        </p>
       </div>
 
       {/* ── Timeline ─────────────────────────────── */}
       <div className="relative w-full max-w-4xl mx-auto">
-        {/* Vertical spine */}
+        {/* Vertical spine — scroll-driven fill only on desktop */}
         <div
           ref={spineRef}
           className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-white/[0.06] -translate-x-1/2"
         >
-          {/* Scroll-driven fill */}
-          <motion.div
-            style={{ height: lineHeight }}
-            className="w-full origin-top rounded-full"
-          >
-            <div className="w-full h-full bg-gradient-to-b from-primary/70 via-accent/50 to-transparent" />
-          </motion.div>
-          {/* Ambient glow on the spine */}
-          <motion.div
-            style={{ height: lineHeight }}
-            className="absolute inset-0 w-[3px] -left-px blur-sm origin-top"
-          >
-            <div className="w-full h-full bg-gradient-to-b from-primary/40 via-accent/30 to-transparent" />
-          </motion.div>
+          {!isMobile && (
+            <>
+              <motion.div
+                style={{ height: lineHeight }}
+                className="w-full origin-top rounded-full"
+              >
+                <div className="w-full h-full bg-gradient-to-b from-primary/70 via-accent/50 to-transparent" />
+              </motion.div>
+              <motion.div
+                style={{ height: lineHeight }}
+                className="absolute inset-0 w-[3px] -left-px blur-sm origin-top"
+              >
+                <div className="w-full h-full bg-gradient-to-b from-primary/40 via-accent/30 to-transparent" />
+              </motion.div>
+            </>
+          )}
         </div>
 
         {/* Entries */}

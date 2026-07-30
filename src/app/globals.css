@@ -106,4 +106,24 @@
       scroll-behavior: auto !important;
     }
   }
+
+  /* ─── Mobile Layout Overrides ─────────────────────────────── */
+  @media (max-width: 768px), (hover: none) and (pointer: coarse) {
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    section, footer, main, article {
+      max-width: 100vw;
+      overflow-x: hidden;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    h1 {
+      font-size: 2.25rem !important;
+      line-height: 1.1 !important;
+    }
+  }
 }

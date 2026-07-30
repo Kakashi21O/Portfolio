@@ -3,6 +3,7 @@
 import React, { useRef, useCallback } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useCursor } from "./CursorContext";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface MagneticWrapperProps {
   children: React.ReactNode;
@@ -17,9 +18,13 @@ export function MagneticWrapper({
   strength = 15,
   cursorType = "hovering_button"
 }: MagneticWrapperProps) {
+  const isMobile = useIsMobile();
   const ref = useRef<HTMLDivElement>(null);
   const rectRef = useRef({ left: 0, top: 0, width: 0, height: 0 });
   const { setCursorState } = useCursor();
+
+  // On mobile, render children directly without magnetic effect
+  if (isMobile) return <div className={`inline-block ${className}`}>{children}</div>;
 
   // Use MotionValues + Springs instead of React state — no renders on mousemove
   const x = useMotionValue(0);

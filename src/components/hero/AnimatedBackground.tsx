@@ -2,28 +2,32 @@
 
 import { useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export function AnimatedBackground() {
+  const isMobile = useIsMobile();
+
+  // Only create motion values on desktop — avoids unnecessary computation on mobile
   const mouseX = useMotionValue(-999);
   const mouseY = useMotionValue(-999);
-
-  // Smooth the spotlight position with a light spring
   const spotlightX = useSpring(mouseX, { stiffness: 80, damping: 20 });
   const spotlightY = useSpring(mouseY, { stiffness: 80, damping: 20 });
 
   useEffect(() => {
+    if (isMobile) return;
+
     const onMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isMobile]);
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
 
-      {/* Base radial — gives center depth */}
+      {/* Base radial */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_oklch(0.13_0.015_265)_0%,_oklch(0.09_0.005_265)_70%)]" />
 
       {/* Top-left violet blob */}
@@ -35,7 +39,7 @@ export function AnimatedBackground() {
       {/* Center-top subtle accent */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[300px] rounded-full bg-[oklch(0.68_0.22_270)] opacity-[0.06] blur-[80px]" />
 
-      {/* Static spotlight — removes continuous React/Framer Motion updates on mouse move */}
+      {/* Static spotlight — no mouse tracking on mobile */}
       <div
         className="absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full -translate-x-1/2 -translate-y-1/2"
         style={{

@@ -9,6 +9,7 @@ import { AnimatedBackground } from "./AnimatedBackground";
 import { TypewriterText } from "./TypewriterText";
 import { MagneticWrapper } from "@/components/cursor/MagneticWrapper";
 import { publicPath } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const Hero3DObject = dynamic(
   () => import("./Hero3DObject").then((mod) => mod.Hero3DObject),
@@ -40,6 +41,7 @@ const item: Variants = {
 export function HeroSection() {
   const scrollDown = () =>
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+  const isMobile = useIsMobile();
 
   const scrollToProjects = useCallback(() => {
     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
@@ -61,6 +63,13 @@ export function HeroSection() {
           animate="visible"
           className="flex flex-col items-center text-center lg:items-start lg:text-left pt-24 lg:pt-0 order-2 lg:order-1"
         >
+          {/* Mobile Logo */}
+          {isMobile && (
+            <div className="text-xl font-bold tracking-widest text-foreground mb-6">
+              MY
+            </div>
+          )}
+
           {/* Greeting chip */}
           <motion.div variants={item} className="mb-4">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary backdrop-blur-sm">
@@ -139,23 +148,25 @@ export function HeroSection() {
         </motion.div>
 
         {/* ── Right: 3D Visual ── */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.4, type: "spring", stiffness: 80 }}
-          className="order-1 lg:order-2 flex justify-center w-full"
-        >
-          <Hero3DObject />
-        </motion.div>
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.4, type: "spring", stiffness: 80 }}
+            className="order-1 lg:order-2 flex justify-center w-full"
+          >
+            <Hero3DObject />
+          </motion.div>
+        )}
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - hidden on mobile via CSS */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 0.8 }}
         onClick={scrollDown}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group max-md:hidden"
       >
         <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground group-hover:text-primary transition-colors">
           Scroll to explore
