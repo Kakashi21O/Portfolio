@@ -18,8 +18,8 @@ const socialLinks = [
   { icon: siGithub, label: "GitHub", href: "https://github.com/Kakashi21O" },
   { icon: null, label: "LinkedIn", href: "https://www.linkedin.com/in/mantu-yadavo1" },
   { icon: siInstagram, label: "Instagram", href: "https://www.instagram.com/mk_yadav_10" },
-  { icon: siX, label: "X", href: "#" },
-  { icon: siDiscord, label: "Discord", href: "https://discord.gg/https://discord.gg/S6jbx9fs2p" },
+  { icon: siX, label: "X", href: "https://x.com/nova12O" },
+  { icon: siDiscord, label: "Discord", href: "https://discord.gg/S6jbx9fs2p" },
 ];
 
 const techStack = [

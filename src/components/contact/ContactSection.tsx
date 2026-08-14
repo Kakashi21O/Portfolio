@@ -21,7 +21,7 @@ const socialLinks = [
   { icon: <Mail size={18} />, label: "Email", href: "https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=kakashi7gamer@gmail.com&su=About%20Your%20Portfolio", accent: "rgba(167,139,250,", color: "#a78bfa" },
   { icon: <IconSvg path={siDiscord.path} fill="currentColor" />, label: "Discord", href: "https://discord.gg/S6jbx9fs2p", accent: "rgba(88,101,242,", color: "#5865f2" },
   { icon: <IconSvg path={siInstagram.path} fill="currentColor" />, label: "Instagram", href: "https://instagram.com/mk_yadav_10", accent: "rgba(228,64,95,", color: "#e4405f" },
-  { icon: <IconSvg path={siX.path} fill="currentColor" />, label: "Twitter / X", href: "#", accent: "rgba(29,161,242,", color: "#1da1f2" },
+  { icon: <IconSvg path={siX.path} fill="currentColor" />, label: "Twitter / X", href: "https://x.com/nova12O", accent: "rgba(29,161,242,", color: "#1da1f2" },
 ];
 
 const springConfig = { stiffness: 250, damping: 25, mass: 0.5 };

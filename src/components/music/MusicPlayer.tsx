@@ -3,11 +3,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, SkipForward, SkipBack, Volume2, VolumeX, Music, X } from "lucide-react";
+import { publicPath } from "@/lib/utils";
 
 const TRACKS = [
-  { id: 1, title: "Ambient Focus", artist: "Lo-Fi", src: "" },
-  { id: 2, title: "Deep Work", artist: "Chillhop", src: "" },
-  { id: 3, title: "Coding Flow", artist: "Instrumental", src: "" },
+  { id: 1, title: "Ambient Focus", artist: "Electronic / Focus", src: publicPath("/music/ambient-focus.mp3") },
+  { id: 2, title: "Neon Horizon", artist: "Synthwave / Chill", src: publicPath("/music/neon-synth.mp3") },
+  { id: 3, title: "Cyber Flow", artist: "Futuristic Beat", src: publicPath("/music/cyber-flow.mp3") },
 ];
 
 const STORAGE_KEY = "portfolio-music-state";
@@ -97,7 +98,12 @@ export function MusicPlayer() {
     if (isPlaying) {
       audio.pause();
     } else {
-      audio.play().catch(() => {});
+      if (!audio.src) {
+        audio.src = track.src;
+      }
+      audio.play().catch((err) => {
+        console.warn("Playback error:", err);
+      });
     }
     setIsPlaying((p) => !p);
   }, [isPlaying, trackIndex]);

@@ -22,10 +22,10 @@ const Hero3DObject = dynamic(
 );
 
 const socialLinks = [
-  { icon: FaGithub,   href: "https://github.com/Kakashi21O",   label: "GitHub" },
-  { icon: FaLinkedin, href: "https://linkedin.com",             label: "LinkedIn" },
-  { icon: FaTwitter,  href: "https://twitter.com",              label: "Twitter" },
-  { icon: FaEnvelope, href: "mailto:hello@example.com",         label: "Email" },
+  { icon: FaGithub,   href: "https://github.com/Kakashi21O",                 label: "GitHub" },
+  { icon: FaLinkedin, href: "https://www.linkedin.com/in/mantu-yadavo1",     label: "LinkedIn" },
+  { icon: FaTwitter,  href: "https://x.com/nova12O",                         label: "Twitter" },
+  { icon: FaEnvelope, href: "mailto:kakashi7gamer@gmail.com",               label: "Email" },
 ];
 
 const container: Variants = {
