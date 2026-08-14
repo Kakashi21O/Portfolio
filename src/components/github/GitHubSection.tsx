@@ -2,13 +2,10 @@
 
 import { motion } from "framer-motion";
 import { GitFork, Star, Users, TrendingUp } from "lucide-react";
-import githubData from "../../../data/github.json";
+import { useGitHubData } from "@/hooks/useGitHubData";
 import { RepositoryCard } from "./RepositoryCard";
 import { LanguageBar } from "./LanguageBar";
 import { ActivityFeed } from "./ActivityFeed";
-import type { GitHubData } from "./types";
-
-const data = githubData as GitHubData;
 
 function StatCard({
   label,
@@ -30,7 +27,7 @@ function StatCard({
       className="relative group flex flex-col items-center p-5 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm shadow-xl shadow-black/20 transition-all duration-500 hover:border-primary/30 hover:bg-white/8"
     >
       <div className="text-primary mb-2">{icon}</div>
-      <div className="text-3xl font-bold text-foreground tracking-tight">
+      <div className="text-3xl font-bold text-foreground tracking-tight" suppressHydrationWarning>
         {typeof value === "number" ? value.toLocaleString() : value}
       </div>
       <div className="text-[10px] font-mono text-muted-foreground/50 uppercase tracking-wider mt-1">
@@ -41,6 +38,8 @@ function StatCard({
 }
 
 export function GitHubSection() {
+  const { data, isFetched, lastUpdated } = useGitHubData("Kakashi21O");
+
   return (
     <section
       id="github"
@@ -67,6 +66,22 @@ export function GitHubSection() {
           <h2 className="text-sm font-mono text-accent uppercase tracking-[0.2em]">
             GitHub
           </h2>
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono border border-accent/20 bg-accent/5 text-accent/80">
+            <span
+              className={`w-1.5 h-1.5 rounded-full ${
+                !isFetched
+                  ? "bg-yellow-400 animate-pulse"
+                  : lastUpdated
+                  ? "bg-emerald-400"
+                  : "bg-slate-400"
+              }`}
+            />
+            {!isFetched
+              ? "Fetching…"
+              : lastUpdated
+              ? `Live · ${lastUpdated}`
+              : "Cached"}
+          </span>
         </motion.div>
 
         <motion.p

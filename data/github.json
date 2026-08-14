@@ -2,77 +2,75 @@
   "username": "Kakashi21O",
   "profileUrl": "https://github.com/Kakashi21O",
   "stats": {
-    "totalRepos": 15,
-    "totalStars": 42,
-    "totalForks": 8,
-    "followers": 12,
-    "following": 25,
-    "contributions": 520
+    "totalRepos": 12,
+    "totalStars": 5,
+    "totalForks": 1,
+    "followers": 2,
+    "following": 3,
+    "contributions": 258
   },
   "languages": [
-    { "name": "Python", "percentage": 45, "color": "#3776ab" },
-    { "name": "TypeScript", "percentage": 20, "color": "#3178c6" },
-    { "name": "JavaScript", "percentage": 15, "color": "#f7df1e" },
-    { "name": "HTML", "percentage": 10, "color": "#e34c26" },
-    { "name": "CSS", "percentage": 5, "color": "#1572b6" },
-    { "name": "Other", "percentage": 5, "color": "#6e7681" }
+    { "name": "TypeScript", "percentage": 48, "color": "#3178c6" },
+    { "name": "Python", "percentage": 32, "color": "#3776ab" },
+    { "name": "HTML", "percentage": 8, "color": "#e34c26" },
+    { "name": "CSS", "percentage": 6, "color": "#563d7c" },
+    { "name": "JavaScript", "percentage": 5, "color": "#f7df1e" },
+    { "name": "Other", "percentage": 1, "color": "#6e7681" }
   ],
   "pinnedRepositories": [
     {
-      "name": "codeazy",
-      "description": "AI-powered code review and automation platform",
-      "url": "https://github.com/Kakashi21O/codeazy",
+      "name": "Assignment",
+      "description": "Python project repository.",
+      "url": "https://github.com/Kakashi21O/Assignment",
       "language": "Python",
       "languageColor": "#3776ab",
-      "stars": 18,
-      "forks": 3,
-      "topics": ["ai", "code-review", "fastapi", "automation"],
+      "stars": 4,
+      "forks": 1,
+      "topics": ["python", "project"],
       "updatedAt": "2025-06-15"
     },
     {
-      "name": "devops-dashboard",
-      "description": "Real-time server monitoring and deployment dashboard",
-      "url": "https://github.com/Kakashi21O/devops-dashboard",
-      "language": "Python",
-      "languageColor": "#3776ab",
-      "stars": 12,
-      "forks": 2,
-      "topics": ["devops", "monitoring", "websocket", "docker"],
-      "updatedAt": "2025-05-20"
+      "name": "CODEazy",
+      "description": "AI-powered code review and automation platform.",
+      "url": "https://github.com/Kakashi21O/CODEazy",
+      "language": "HTML",
+      "languageColor": "#e34c26",
+      "stars": 1,
+      "forks": 0,
+      "topics": ["html", "ai", "automation"],
+      "updatedAt": "2025-06-10"
     },
     {
-      "name": "api-gateway",
-      "description": "Lightweight API gateway with rate limiting",
-      "url": "https://github.com/Kakashi21O/api-gateway",
-      "language": "Python",
-      "languageColor": "#3776ab",
-      "stars": 8,
-      "forks": 1,
-      "topics": ["api", "gateway", "fastapi", "redis"],
-      "updatedAt": "2025-04-10"
-    },
-    {
-      "name": "portfolio",
-      "description": "Modern developer portfolio built with Next.js",
-      "url": "https://github.com/Kakashi21O/portfolio",
+      "name": "Portfolio",
+      "description": "Modern developer portfolio built with Next.js and Three.js.",
+      "url": "https://github.com/Kakashi21O/Portfolio",
       "language": "TypeScript",
       "languageColor": "#3178c6",
-      "stars": 4,
-      "forks": 2,
+      "stars": 0,
+      "forks": 0,
       "topics": ["nextjs", "react", "portfolio", "threejs"],
-      "updatedAt": "2025-07-01"
+      "updatedAt": "2026-08-15"
+    },
+    {
+      "name": "Ditto",
+      "description": "Python automation and tool.",
+      "url": "https://github.com/Kakashi21O/Ditto",
+      "language": "Python",
+      "languageColor": "#3776ab",
+      "stars": 0,
+      "forks": 0,
+      "topics": ["python", "automation"],
+      "updatedAt": "2026-08-13"
     }
   ],
   "recentActivity": [
-    { "type": "push", "repo": "portfolio", "message": "Update portfolio layout and components", "date": "2025-07-01" },
-    { "type": "push", "repo": "codeazy", "message": "Add AI code analysis feature", "date": "2025-06-15" },
-    { "type": "star", "repo": "fastapi", "message": "Starred fastapi/fastapi", "date": "2025-06-10" },
-    { "type": "push", "repo": "devops-dashboard", "message": "Implement WebSocket monitoring", "date": "2025-05-20" },
-    { "type": "fork", "repo": "awesome-python", "message": "Forked awesome-python/awesome-python", "date": "2025-05-05" }
+    { "type": "push", "repo": "Portfolio", "message": "Update portfolio and features", "date": "2026-08-15" },
+    { "type": "push", "repo": "Ditto", "message": "Update Ditto tool", "date": "2026-08-13" },
+    { "type": "push", "repo": "Python-Libraries", "message": "Add library examples", "date": "2026-07-20" }
   ],
   "contributionGraph": {
-    "totalContributions": 520,
-    "currentStreak": 15,
-    "longestStreak": 45
+    "totalContributions": 258,
+    "currentStreak": 5,
+    "longestStreak": 15
   }
 }
