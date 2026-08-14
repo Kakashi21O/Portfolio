@@ -25,7 +25,7 @@ const socialLinks = [
   { icon: FaGithub,   href: "https://github.com/Kakashi21O",                 label: "GitHub" },
   { icon: FaLinkedin, href: "https://www.linkedin.com/in/mantu-yadavo1",     label: "LinkedIn" },
   { icon: FaTwitter,  href: "https://x.com/nova12O",                         label: "Twitter" },
-  { icon: FaEnvelope, href: "mailto:kakashi7gamer@gmail.com",               label: "Email" },
+  { icon: FaEnvelope, href: "https://mail.google.com/mail/u/0/?fs=1&tf=cm&to=kakashi7gamer@gmail.com&su=About%20Your%20Portfolio", label: "Email" },
 ];
 
 const container: Variants = {
