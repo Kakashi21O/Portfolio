@@ -3,33 +3,40 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search } from "lucide-react";
-import projectsData from "../../../data/projects.json";
+import { useProjectsData } from "@/hooks/useProjectsData";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectFilters } from "./ProjectFilters";
 import { ProjectDetailsModal } from "./ProjectDetailsModal";
 import type { Project, ProjectCategory } from "./types";
 
-const projects = projectsData as Project[];
+const LATEST_COUNT = 4;
 
 export function ProjectsSection() {
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("All");
+  const { projects, isFetched, lastUpdated } = useProjectsData();
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("Latest");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects = useMemo(() => {
-    return projects.filter((project) => {
-      const matchesCategory =
-        activeCategory === "All" || project.category === activeCategory;
-      const matchesSearch =
-        searchQuery === "" ||
-        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.shortDescription.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.technologies.some((tech) =>
-          tech.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      return matchesCategory && matchesSearch;
-    });
-  }, [activeCategory, searchQuery]);
+    let base = projects;
+
+    // "Latest" = 4 most recently pushed (hook already sorts by pushed_at desc)
+    if (activeCategory === "Latest") {
+      base = projects.slice(0, LATEST_COUNT);
+    } else if (activeCategory !== "All") {
+      base = projects.filter((p) => p.category === activeCategory);
+    }
+
+    if (searchQuery.trim() === "") return base;
+
+    const q = searchQuery.toLowerCase();
+    return base.filter(
+      (p) =>
+        p.title.toLowerCase().includes(q) ||
+        p.shortDescription.toLowerCase().includes(q) ||
+        p.technologies.some((t) => t.toLowerCase().includes(q))
+    );
+  }, [projects, activeCategory, searchQuery]);
 
   return (
     <section
@@ -62,6 +69,23 @@ export function ProjectsSection() {
               / {String(filteredProjects.length).padStart(2, "0")}
             </span>
           </div>
+          {/* Live status badge — mirrors GitHub section exactly */}
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono border border-primary/20 bg-primary/5 text-primary/80">
+            <span
+              className={`w-1.5 h-1.5 rounded-full ${
+                !isFetched
+                  ? "bg-yellow-400 animate-pulse"
+                  : lastUpdated
+                  ? "bg-emerald-400"
+                  : "bg-slate-400"
+              }`}
+            />
+            {!isFetched
+              ? "Fetching…"
+              : lastUpdated
+              ? `Live · ${lastUpdated}`
+              : "Cached"}
+          </span>
         </motion.div>
 
         <motion.p
@@ -139,7 +163,7 @@ export function ProjectsSection() {
       </div>
 
       {/* Empty State */}
-      {filteredProjects.length === 0 && (
+      {filteredProjects.length === 0 && isFetched && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

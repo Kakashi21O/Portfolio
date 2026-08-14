@@ -4,12 +4,14 @@ import { motion } from "framer-motion";
 import type { ProjectCategory } from "./types";
 
 const categories: ProjectCategory[] = [
+  "Latest",
   "All",
   "Backend",
   "Frontend",
   "AI",
   "DevOps",
 ];
+
 
 interface ProjectFiltersProps {
   activeCategory: ProjectCategory;

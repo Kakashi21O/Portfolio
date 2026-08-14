@@ -36,4 +36,5 @@ export interface Project {
   metrics: ProjectMetrics;
 }
 
-export type ProjectCategory = "All" | "Backend" | "Frontend" | "AI" | "DevOps" | "Automation" | "Full Stack" | "Open Source";
+export type ProjectCategory = "Latest" | "All" | "Backend" | "Frontend" | "AI" | "DevOps" | "Automation" | "Full Stack" | "Open Source";
+
