@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 
 const personSchema = {
   "@context": "https://schema.org",

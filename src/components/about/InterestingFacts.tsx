@@ -30,7 +30,7 @@ export function InterestingFacts() {
         className="relative group"
       >
         <div className="absolute -left-4 -top-6 text-8xl text-primary/10 font-serif leading-none select-none transition-colors duration-500 group-hover:text-primary/20">
-          "
+          &ldquo;
         </div>
         <p className="text-xl md:text-2xl font-medium leading-relaxed italic text-foreground/90 relative z-10 pl-6 border-l-2 border-primary/30 group-hover:border-primary transition-colors duration-500">
           {quote}

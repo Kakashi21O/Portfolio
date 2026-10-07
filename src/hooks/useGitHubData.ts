@@ -35,6 +35,31 @@ interface CachePayload {
   data: GitHubData;
 }
 
+interface RawGitHubRepo {
+  name: string;
+  description?: string | null;
+  html_url: string;
+  language?: string | null;
+  stargazers_count?: number;
+  forks_count?: number;
+  fork?: boolean;
+  topics?: string[];
+  pushed_at?: string;
+  updated_at?: string;
+  languages_url?: string;
+}
+
+interface RawGitHubEvent {
+  type: string;
+  repo?: { name?: string };
+  payload?: {
+    commits?: Array<{ message?: string }>;
+    action?: string;
+    ref_type?: string;
+  };
+  created_at?: string;
+}
+
 function getCachedData(): GitHubData | null {
   if (typeof window === "undefined") return null;
   try {
@@ -127,13 +152,13 @@ export function useGitHubData(username: string = "Kakashi21O") {
         }
 
         // 3. Compute accurate stars & forks
-        const totalStars = reposData.reduce((acc: number, r: any) => acc + (r.stargazers_count || 0), 0);
-        const totalForks = reposData.reduce((acc: number, r: any) => acc + (r.forks_count || 0), 0);
+        const totalStars = (reposData as RawGitHubRepo[]).reduce((acc: number, r: RawGitHubRepo) => acc + (r.stargazers_count || 0), 0);
+        const totalForks = (reposData as RawGitHubRepo[]).reduce((acc: number, r: RawGitHubRepo) => acc + (r.forks_count || 0), 0);
 
         // 4. Compute byte-accurate language distribution across repos
         const langBytes: Record<string, number> = {};
         await Promise.allSettled(
-          reposData.map(async (r: any) => {
+          (reposData as RawGitHubRepo[]).map(async (r: RawGitHubRepo) => {
             if (!r.languages_url) return;
             try {
               const res = await fetch(r.languages_url, { headers: GH_HEADERS });
@@ -185,31 +210,33 @@ export function useGitHubData(username: string = "Kakashi21O") {
         }
 
         // 5. Select Pinned/Top Repositories (sort by stars descending then updated date)
-        const nonForks = reposData.filter((r: any) => !r.fork);
-        const sortedRepos = (nonForks.length > 0 ? nonForks : reposData).sort((a: any, b: any) => {
+        const typedRepos = reposData as RawGitHubRepo[];
+        const nonForks = typedRepos.filter((r: RawGitHubRepo) => !r.fork);
+        const sortedRepos = (nonForks.length > 0 ? nonForks : typedRepos).sort((a: RawGitHubRepo, b: RawGitHubRepo) => {
           if ((b.stargazers_count || 0) !== (a.stargazers_count || 0)) {
             return (b.stargazers_count || 0) - (a.stargazers_count || 0);
           }
-          return new Date(b.pushed_at || b.updated_at).getTime() - new Date(a.pushed_at || a.updated_at).getTime();
+          return new Date(b.pushed_at || b.updated_at || "").getTime() - new Date(a.pushed_at || a.updated_at || "").getTime();
         });
 
-        const pinnedRepositories: PinnedRepository[] = sortedRepos.slice(0, 4).map((repo: any) => ({
+        const pinnedRepositories: PinnedRepository[] = sortedRepos.slice(0, 4).map((repo: RawGitHubRepo) => ({
           name: repo.name,
           description: repo.description || (repo.language ? `${repo.language} project repository.` : "Open source project repository."),
           url: repo.html_url,
           language: repo.language || "TypeScript",
-          languageColor: LANGUAGE_COLORS[repo.language] || "#3178c6",
+          languageColor: (repo.language && LANGUAGE_COLORS[repo.language]) || "#3178c6",
           stars: repo.stargazers_count || 0,
           forks: repo.forks_count || 0,
           topics: Array.isArray(repo.topics) && repo.topics.length > 0
             ? repo.topics
             : [repo.language?.toLowerCase() || "code", "github"].filter(Boolean),
-          updatedAt: formatDate(repo.pushed_at || repo.updated_at),
+          updatedAt: formatDate(repo.pushed_at || repo.updated_at || ""),
         }));
 
         // 6. Parse Recent Activity from public events
-        const recentActivity: ActivityItem[] = Array.isArray(eventsData) && eventsData.length > 0
-          ? eventsData.slice(0, 5).map((evt: any) => {
+        const typedEvents = eventsData as RawGitHubEvent[];
+        const recentActivity: ActivityItem[] = Array.isArray(typedEvents) && typedEvents.length > 0
+          ? typedEvents.slice(0, 5).map((evt: RawGitHubEvent) => {
               const repoShort = (evt.repo?.name || "").replace(`${username}/`, "");
               let type: ActivityItem["type"] = "push";
               let message = `Activity in ${repoShort}`;
@@ -239,7 +266,7 @@ export function useGitHubData(username: string = "Kakashi21O") {
                 type,
                 repo: repoShort,
                 message,
-                date: formatDate(evt.created_at),
+                date: formatDate(evt.created_at || ""),
               };
             })
           : (initialData as GitHubData).recentActivity;

@@ -19,7 +19,7 @@ import {
   Rocket,
   X,
 } from "lucide-react";
-import { TechIcon } from "@/components/tech-stack/TechIcon";
+import { TechIcon } from "@/components/ui/TechIcon";
 import {
   siPython,
   siFastapi,
