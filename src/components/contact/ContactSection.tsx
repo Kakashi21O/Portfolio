@@ -259,7 +259,7 @@ function FormCard() {
               </div>
               <div>
                 <label htmlFor="email" className="block text-xs font-mono text-muted-foreground/60 uppercase tracking-wider mb-1.5">Email</label>
-                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required disabled={isFormLocked} className={`${inputClass} ${fieldErrors.email ? "border-red-500/50 focus:border-red-500/50 focus:ring-red-500/20" : ""}`} placeholder="your@email.com" />
+                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required disabled={isFormLocked} suppressHydrationWarning className={`${inputClass} ${fieldErrors.email ? "border-red-500/50 focus:border-red-500/50 focus:ring-red-500/20" : ""}`} placeholder="your@email.com" />
                 {fieldErrors.email && <p className="text-[11px] text-red-400 mt-1">{fieldErrors.email}</p>}
               </div>
             </div>
