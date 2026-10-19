@@ -66,20 +66,39 @@ export function CodeWindow() {
       {/* Subtle outer glow that activates on hover */}
       <div className="absolute -inset-[1px] bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 rounded-xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-700 -z-10" />
 
-      {/* VS Code Window Header */}
-      <div className="flex items-center px-4 py-3 bg-white/5 border-b border-white/5 backdrop-blur-md relative z-10">
-        <div className="flex space-x-2">
-          <div className="w-3 h-3 rounded-full bg-[#ff5f56] border border-black/10" />
-          <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-black/10" />
-          <div className="w-3 h-3 rounded-full bg-[#27c93f] border border-black/10" />
+      {/* VS Code Window Header with Beautiful-UI styled status badge & copy button */}
+      <div className="flex items-center justify-between px-4 py-3 bg-white/[0.04] border-b border-white/[0.08] backdrop-blur-md relative z-10">
+        <div className="flex items-center gap-2">
+          <div className="flex space-x-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/90 border border-black/10" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/90 border border-black/10" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]/90 border border-black/10" />
+          </div>
+          <span className="ml-2 font-mono text-[11px] text-white/50 tracking-wider">
+            journey.py
+          </span>
         </div>
-        <div className="ml-4 flex-1 text-center text-xs text-white/50 font-medium tracking-wide mr-12 select-none">
-          journey.py
+
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-mono border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            {isTyping ? "executing" : "ready"}
+          </span>
+          <button
+            onClick={() => {
+              const fullCode = codeLines.map((l) => " ".repeat(l.indent) + l.text).join("\n");
+              navigator.clipboard?.writeText(fullCode);
+            }}
+            title="Copy code"
+            className="text-[10px] font-mono text-muted-foreground/60 hover:text-foreground hover:bg-white/10 px-2 py-0.5 rounded transition-colors"
+          >
+            copy
+          </button>
         </div>
       </div>
 
       {/* Code Editor Body */}
-      <div className="p-5 md:p-7 text-gray-300 min-h-[180px] text-sm md:text-base leading-relaxed relative z-10 bg-gradient-to-b from-transparent to-black/20">
+      <div className="p-5 md:p-6 text-gray-300 min-h-[170px] text-xs md:text-sm leading-relaxed relative z-10 bg-gradient-to-b from-transparent to-black/20 font-mono">
         {displayedLines.map((line, index) => (
           <div key={index} className="flex group/line">
             <span className="w-6 text-white/20 select-none text-right mr-5 pr-2 border-r border-white/5 group-hover/line:border-white/20 group-hover/line:text-white/40 transition-colors duration-300">
@@ -98,7 +117,7 @@ export function CodeWindow() {
                 <motion.span
                   animate={{ opacity: [1, 0] }}
                   transition={{ repeat: Infinity, duration: 0.8 }}
-                  className="inline-block w-2 h-5 bg-primary ml-1 align-middle shadow-[0_0_8px_var(--color-primary)]"
+                  className="inline-block w-2 h-4 bg-primary ml-1 align-middle shadow-[0_0_8px_var(--color-primary)]"
                 />
               )}
             </span>
@@ -113,7 +132,7 @@ export function CodeWindow() {
             <motion.span
               animate={{ opacity: [1, 0] }}
               transition={{ repeat: Infinity, duration: 0.8 }}
-              className="inline-block w-2 h-5 bg-primary ml-1 align-middle shadow-[0_0_8px_var(--color-primary)]"
+              className="inline-block w-2 h-4 bg-primary ml-1 align-middle shadow-[0_0_8px_var(--color-primary)]"
             />
           </div>
         )}

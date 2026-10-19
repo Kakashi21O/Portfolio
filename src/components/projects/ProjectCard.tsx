@@ -180,31 +180,31 @@ export function ProjectCard({ project, index, onOpenDetails }: ProjectCardProps)
             className="flex items-center gap-3 mb-5"
             style={{ transform: "translateZ(8px)" }}
           >
-            <span className="text-[11px] font-mono text-white/30 tracking-widest select-none">
-              {projectNum}
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded border border-white/[0.08] bg-white/[0.02] text-white/40 tracking-wider select-none">
+              #{projectNum}
             </span>
 
             {project.featured && (
-              <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border border-primary/40 bg-primary/15 text-primary/80">
+              <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full border border-primary/30 bg-primary/10 text-primary font-medium">
                 Featured
               </span>
             )}
 
             <div className="flex-1" />
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm">
               <span
                 className={`w-1.5 h-1.5 rounded-full ${
                   project.status === "Completed"
-                    ? "bg-emerald-500 shadow-[0_0_6px_rgba(52,211,153,0.3)]"
-                    : "bg-amber-500 animate-pulse"
+                    ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"
+                    : "bg-amber-400 animate-pulse shadow-[0_0_8px_rgba(251,191,36,0.5)]"
                 }`}
               />
               <span
-                className={`text-[10px] font-mono uppercase tracking-wider ${
+                className={`text-[10px] font-mono uppercase tracking-wider font-medium ${
                   project.status === "Completed"
-                    ? "text-emerald-400/70"
-                    : "text-amber-400/70"
+                    ? "text-emerald-400"
+                    : "text-amber-400"
                 }`}
               >
                 {project.status}

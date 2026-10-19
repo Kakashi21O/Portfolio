@@ -107,30 +107,47 @@ export function HeroSection() {
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 mb-10 w-full sm:w-auto">
+          <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto">
             <MagneticWrapper>
               <button
                 onClick={scrollToProjects}
-                className="group relative inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 hover:scale-[1.03] active:scale-[0.98]"
+                className="group relative inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-primary px-7 text-xs font-mono uppercase tracking-wider text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:shadow-primary/35 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
               >
                 View Projects
-                <span className="absolute inset-0 rounded-full ring-1 ring-primary/50" />
+                <span className="absolute inset-0 rounded-xl ring-1 ring-primary/40" />
               </button>
             </MagneticWrapper>
             <MagneticWrapper>
               <a
                 href={publicPath("/resume/Mantu-Yadav-Resume.pdf")}
                 download
-                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-white/5 px-8 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:bg-white/10 hover:border-primary/50 active:scale-[0.98]"
+                className="group inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-7 text-xs font-mono uppercase tracking-wider text-foreground/90 backdrop-blur-sm transition-all hover:bg-white/[0.08] hover:border-primary/40 active:scale-[0.98]"
               >
-                <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
-                Download Resume
+                <Download className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5" />
+                Resume
               </a>
             </MagneticWrapper>
           </motion.div>
 
+          {/* Prompt/Command bar style micro-bar (Beautiful UI primitive) */}
+          <motion.div variants={item} className="mb-8 w-full max-w-sm">
+            <div className="flex items-center justify-between px-3.5 py-2 rounded-xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md text-xs font-mono text-muted-foreground/80 hover:border-white/20 transition-colors">
+              <div className="flex items-center gap-2 truncate">
+                <span className="text-primary font-bold">❯</span>
+                <span className="truncate">kakashi7gamer@gmail.com</span>
+              </div>
+              <button
+                onClick={() => navigator.clipboard?.writeText("kakashi7gamer@gmail.com")}
+                className="shrink-0 text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-white/[0.06] hover:bg-primary/20 hover:text-primary transition-colors text-foreground/70"
+                title="Copy email address"
+              >
+                copy
+              </button>
+            </div>
+          </motion.div>
+
           {/* Social Icons */}
-          <motion.div variants={item} className="flex gap-3">
+          <motion.div variants={item} className="flex gap-2.5">
             {socialLinks.map(({ icon: Icon, href, label }) => (
               <MagneticWrapper key={label} strength={20}>
                 <a
@@ -138,9 +155,9 @@ export function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white/5 text-muted-foreground backdrop-blur-sm transition-all hover:border-primary/60 hover:bg-primary/10 hover:text-primary hover:scale-110"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04] text-muted-foreground/70 backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:-translate-y-0.5"
                 >
-                  <Icon size={18} />
+                  <Icon size={15} />
                 </a>
               </MagneticWrapper>
             ))}

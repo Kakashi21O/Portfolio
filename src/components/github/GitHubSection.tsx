@@ -24,13 +24,13 @@ function StatCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
-      className="relative group flex flex-col items-center p-5 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm shadow-xl shadow-black/20 transition-all duration-500 hover:border-primary/30 hover:bg-white/8"
+      className="relative group flex flex-col items-center p-5 rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-md shadow-xl shadow-black/20 transition-all duration-500 hover:border-primary/40 hover:bg-white/[0.05]"
     >
-      <div className="text-primary mb-2">{icon}</div>
-      <div className="text-3xl font-bold text-foreground tracking-tight" suppressHydrationWarning>
+      <div className="text-primary mb-2.5 transition-transform duration-300 group-hover:scale-110">{icon}</div>
+      <div className="text-3xl font-bold font-mono text-foreground tracking-tight" suppressHydrationWarning>
         {typeof value === "number" ? value.toLocaleString() : value}
       </div>
-      <div className="text-[10px] font-mono text-muted-foreground/50 uppercase tracking-wider mt-1">
+      <div className="text-[10px] font-mono text-muted-foreground/60 uppercase tracking-widest mt-1.5">
         {label}
       </div>
     </motion.div>

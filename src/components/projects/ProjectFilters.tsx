@@ -35,10 +35,10 @@ export function ProjectFilters({ activeCategory, onCategoryChange }: ProjectFilt
           onClick={() => onCategoryChange(category)}
           role="tab"
           aria-selected={activeCategory === category}
-          className={`px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider border transition-all duration-300 ${
+          className={`px-3.5 py-1.5 rounded-lg text-xs font-mono tracking-wider border transition-all duration-300 ${
             activeCategory === category
-              ? "border-primary/60 text-primary bg-primary/10 shadow-[0_0_12px_rgba(0,0,0,0.15)]"
-              : "border-white/10 text-foreground/60 bg-white/5 hover:border-white/20 hover:text-foreground/80"
+              ? "border-primary/50 text-primary bg-primary/10 shadow-[0_0_12px_rgba(167,139,250,0.15)] font-semibold"
+              : "border-white/[0.08] text-muted-foreground/70 bg-white/[0.02] hover:border-white/20 hover:text-foreground hover:bg-white/[0.05]"
           }`}
         >
           {category}

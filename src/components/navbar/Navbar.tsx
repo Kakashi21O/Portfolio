@@ -113,7 +113,7 @@ export function Navbar() {
           </button>
 
           {/* Desktop Nav Links */}
-          <nav aria-label="Primary navigation" className="hidden md:flex items-center gap-1">
+          <nav aria-label="Primary navigation" className="hidden md:flex items-center gap-1.5 p-1 rounded-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-md">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace("#", "");
               return (
@@ -123,15 +123,15 @@ export function Navbar() {
                   onMouseEnter={() => setCursorState("hovering_link")}
                   onMouseLeave={() => setCursorState("default")}
                   className={cn(
-                    "relative px-4 py-2 text-sm font-medium rounded-md transition-colors",
-                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    "relative px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider rounded-full transition-all duration-300",
+                    isActive ? "text-foreground font-semibold" : "text-muted-foreground/70 hover:text-foreground hover:bg-white/[0.04]"
                   )}
                 >
                   {link.label}
                   {isActive && (
                     <motion.span
                       layoutId="activeIndicator"
-                      className="absolute bottom-0 left-2 right-2 h-[2px] rounded-full bg-primary"
+                      className="absolute inset-0 rounded-full border border-primary/30 bg-primary/10 shadow-[0_0_12px_rgba(167,139,250,0.15)] -z-10"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
