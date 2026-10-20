@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ERROR_MESSAGES = [
@@ -12,11 +12,25 @@ const ERROR_MESSAGES = [
   { code: "429", type: "RATE_LIMITED",   desc: "Brain capacity exceeded.\nThrottle your expectations." },
 ];
 
+let clientError: (typeof ERROR_MESSAGES)[number] | null = null;
+function getClientError() {
+  if (!clientError) {
+    clientError = ERROR_MESSAGES[Math.floor(Math.random() * ERROR_MESSAGES.length)];
+  }
+  return clientError;
+}
+
+const emptySubscribe = () => () => {};
+
 type Phase = "idle" | "glitching" | "done";
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [phase, setPhase] = useState<Phase>("idle");
-  const [error] = useState(() => ERROR_MESSAGES[Math.floor(Math.random() * ERROR_MESSAGES.length)]);
+  const error = useSyncExternalStore(
+    emptySubscribe,
+    getClientError,
+    () => ERROR_MESSAGES[0]
+  );
 
   useEffect(() => {
     const t1 = setTimeout(() => setPhase("glitching"), 1200);
