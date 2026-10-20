@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import type { ProjectCategory } from "./types";
 
 const categories: ProjectCategory[] = [
+  "Starred",
   "Latest",
   "All",
   "Backend",

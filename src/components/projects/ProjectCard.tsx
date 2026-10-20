@@ -129,7 +129,7 @@ export function ProjectCard({ project, index, onOpenDetails }: ProjectCardProps)
   return (
     <motion.div
       variants={alternateReveal}
-      initial="hidden"
+      initial={false}
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
       style={{ perspective: hasTilt ? 800 : undefined }}

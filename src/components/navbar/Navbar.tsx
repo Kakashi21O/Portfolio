@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, publicPath } from "@/lib/utils";
 import { useCursor } from "@/components/cursor/CursorContext";
 import { MagneticWrapper } from "@/components/cursor/MagneticWrapper";
 
@@ -40,15 +40,16 @@ function LocalTime() {
 }
 
 const navLinks = [
-  { label: "Home",      href: "#home" },
-  { label: "About",     href: "#about" },
-  { label: "Skills",    href: "#skills" },
-  { label: "Projects",  href: "#projects" },
-  { label: "Timeline",  href: "#timeline" },
-  { label: "Contact",   href: "#contact" },
+  { label: "Home",         href: "#home" },
+  { label: "About",        href: "#about" },
+  { label: "Skills",       href: "#skills" },
+  { label: "Projects",     href: "#projects" },
+  { label: "Timeline",     href: "#timeline" },
+  { label: "Certificates", href: "/certificates/", isExternal: true },
+  { label: "Contact",      href: "#contact" },
 ];
 
-export function Navbar() {
+export function Navbar({ minimal = false }: { minimal?: boolean }) {
   const [scrolled, setScrolled]     = useState(false);
   const [menuOpen, setMenuOpen]     = useState(false);
   const [activeSection, setActive]  = useState("home");
@@ -112,10 +113,33 @@ export function Navbar() {
             MY
           </button>
 
-          {/* Desktop Nav Links */}
-          <nav aria-label="Primary navigation" className="hidden md:flex items-center gap-1">
+
+        {/* Desktop Nav Links */}
+        {!minimal && (
+          <nav
+            aria-label="Primary navigation"
+            className="hidden md:flex items-center gap-1"
+          >
             {navLinks.map((link) => {
-              const isActive = activeSection === link.href.replace("#", "");
+              if (link.isExternal) {
+                return (
+                  <a
+                    key={link.label}
+                    href={publicPath(link.href)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onMouseEnter={() => setCursorState("hovering_link")}
+                    onMouseLeave={() => setCursorState("default")}
+                    className="relative px-3.5 py-1.5 text-sm font-medium rounded-md text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all duration-200"
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+
+              const isActive =
+                activeSection === link.href.replace("#", "");
+
               return (
                 <button
                   key={link.label}
@@ -124,7 +148,9 @@ export function Navbar() {
                   onMouseLeave={() => setCursorState("default")}
                   className={cn(
                     "relative px-4 py-2 text-sm font-medium rounded-md transition-colors",
-                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    isActive
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   {link.label}
@@ -132,13 +158,18 @@ export function Navbar() {
                     <motion.span
                       layoutId="activeIndicator"
                       className="absolute bottom-0 left-2 right-2 h-[2px] rounded-full bg-primary"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </button>
               );
             })}
           </nav>
+        )}
 
           {/* Time Display + Mobile Toggle */}
           <div className="flex items-center gap-3">
@@ -183,15 +214,32 @@ export function Navbar() {
               className="fixed inset-x-0 top-[72px] z-40 md:hidden bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-xl"
           >
             <nav className="flex flex-col items-center gap-1 py-6 px-6">
-              {navLinks.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => scrollTo(link.href)}
-                  className="w-full text-center py-3 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </button>
-              ))}
+              {navLinks.map((link) => {
+                if (link.isExternal) {
+                  return (
+                    <a
+                      key={link.label}
+                      href={publicPath(link.href)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setMenuOpen(false)}
+                      className="w-full text-center py-3 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  );
+                }
+
+                return (
+                  <button
+                    key={link.label}
+                    onClick={() => scrollTo(link.href)}
+                    className="w-full text-center py-3 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                );
+              })}
               <motion.div
                 initial={false}
                 animate={{

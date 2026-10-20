@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/navbar/Navbar";
+import { ConditionalNavbar } from "@/components/certificates/ConditionalNavbar";
 import { LoadingProvider } from "@/components/loading/LoadingProvider";
 import { CursorProvider } from "@/components/cursor/CursorContext";
 import { CustomCursor } from "@/components/cursor/CustomCursor";
@@ -105,7 +105,7 @@ export default function RootLayout({
               <CustomCursor />
               <LoadingProvider>
                 <SmoothScroll>
-                  <Navbar />
+                  <ConditionalNavbar />
                   {children}
                   <MusicPlayer />
                 </SmoothScroll>

@@ -220,20 +220,22 @@ export function useProjectsData() {
             new Date(a.pushed_at || a.updated_at).getTime()
         );
 
-        // 5. Mark top 2 by stars as featured
-        const byStars = [...sorted].sort(
-          (a: { stargazers_count: number }, b: { stargazers_count: number }) =>
-            (b.stargazers_count || 0) - (a.stargazers_count || 0)
-        );
-        const topTwoIds = new Set(
-          byStars.slice(0, 2).map((r: { id: number }) => r.id)
-        );
+        // 5. Mark manually selected repositories as starred
+        const STARRED_REPOS = new Set([
+          "cleancord",
+          "miningcraft",
+          "ditto",
+          "goodnight-pc",
+          "sih-2026",
+          "valo-ui",
+          "codeazy",
+        ]);
 
-        const mappedProjects: Project[] = sorted.map((repo: { id: number }) => ({
+        const mappedProjects: Project[] = sorted.map((repo) => ({
           ...mapRepoToProject(repo as Parameters<typeof mapRepoToProject>[0]),
-          featured: topTwoIds.has(repo.id),
+          featured: STARRED_REPOS.has(repo.name.toLowerCase()),
         }));
-
+        
         if (isMounted) {
           setProjects(mappedProjects);
           setCachedData(mappedProjects);

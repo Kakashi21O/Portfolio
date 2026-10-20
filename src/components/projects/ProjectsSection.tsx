@@ -13,15 +13,16 @@ const LATEST_COUNT = 4;
 
 export function ProjectsSection() {
   const { projects, isFetched, lastUpdated } = useProjectsData();
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("Latest");
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("Starred");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects = useMemo(() => {
     let base = projects;
 
-    // "Latest" = 4 most recently pushed (hook already sorts by pushed_at desc)
-    if (activeCategory === "Latest") {
+    if (activeCategory === "Starred") {
+      base = projects.filter((p) => p.featured);
+    } else if (activeCategory === "Latest") {
       base = projects.slice(0, LATEST_COUNT);
     } else if (activeCategory !== "All") {
       base = projects.filter((p) => p.category === activeCategory);
@@ -30,6 +31,7 @@ export function ProjectsSection() {
     if (searchQuery.trim() === "") return base;
 
     const q = searchQuery.toLowerCase();
+
     return base.filter(
       (p) =>
         p.title.toLowerCase().includes(q) ||
