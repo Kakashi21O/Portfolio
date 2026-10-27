@@ -5,6 +5,11 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue } from "fram
 import { timelineData } from "./data";
 import type { TimelineItem } from "./data";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { Avatar } from "@/components/about/Avatar";
+import { CodeWindow } from "@/components/about/CodeWindow";
+import { Interests } from "@/components/about/Interests";
+import { InterestingFacts } from "@/components/about/InterestingFacts";
+import { publicPath } from "@/lib/utils";
 
 /* ─── Per-entry card with 3-D tilt ─────────────────────────────── */
 function TimelineEntry({
@@ -137,7 +142,7 @@ export function TimelineSection() {
 
   return (
     <section
-      id="timeline"
+      id="journey"
       ref={containerRef}
       className="relative w-full min-h-screen py-32 px-6 md:px-12 lg:px-24 max-w-[1400px] mx-auto flex flex-col justify-center items-center overflow-visible"
     >
@@ -204,6 +209,21 @@ export function TimelineSection() {
               isLeft={index % 2 === 0}
             />
           ))}
+        </div>
+      </div>
+
+      {/* ── About Profile & Highlights Grid ───────── */}
+      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative z-10 mt-28 md:mt-36 pt-16 border-t border-white/5">
+        <div className="lg:col-span-7 flex flex-col justify-center">
+          <Interests />
+          <InterestingFacts />
+        </div>
+
+        <div className="lg:col-span-5 flex flex-col items-center relative lg:sticky lg:top-32 self-start">
+          <Avatar imagePath={publicPath("/images/avatar.webp")} />
+          <div className="w-full mt-4 transform md:translate-x-6 lg:translate-x-8 z-20">
+            <CodeWindow />
+          </div>
         </div>
       </div>
     </section>

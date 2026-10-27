@@ -41,10 +41,9 @@ function LocalTime() {
 
 const navLinks = [
   { label: "Home",         href: "#home" },
-  { label: "About",        href: "#about" },
   { label: "Skills",       href: "#skills" },
   { label: "Projects",     href: "#projects" },
-  { label: "Timeline",     href: "#timeline" },
+  { label: "Journey",      href: "#journey" },
   { label: "Certificates", href: "/certificates/", isExternal: true },
   { label: "Contact",      href: "#contact" },
 ];

@@ -7,10 +7,9 @@ import { FaLinkedin } from "react-icons/fa";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Timeline", href: "#timeline" },
+  { label: "Journey", href: "#journey" },
   { label: "Contact", href: "#contact" },
 ];
 
