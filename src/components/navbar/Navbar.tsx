@@ -41,10 +41,9 @@ function LocalTime() {
 
 const navLinks = [
   { label: "Home",         href: "#home" },
-  { label: "About",        href: "#about" },
   { label: "Skills",       href: "#skills" },
   { label: "Projects",     href: "#projects" },
-  { label: "Timeline",     href: "#timeline" },
+  { label: "Journey",      href: "#journey" },
   { label: "Certificates", href: "/certificates/", isExternal: true },
   { label: "Contact",      href: "#contact" },
 ];
@@ -105,13 +104,21 @@ export function Navbar({ minimal = false }: { minimal?: boolean }) {
       >
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between h-[72px]">
           
-          {/* Logo */}
-          <button
+        {/* Logo */}
+        <MagneticWrapper strength={15}>
+          <motion.button
             onClick={() => scrollTo("#home")}
-            className="text-xl font-bold tracking-widest text-foreground hover:text-primary transition-colors"
+            aria-label="Go to homepage"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            className="group text-2xl font-black tracking-tighter text-foreground transition-colors duration-300 hover:text-primary"
           >
-            MY
-          </button>
+            M
+            <span className="text-primary transition-colors duration-300 group-hover:text-foreground">
+              Y
+            </span>
+          </motion.button>
+        </MagneticWrapper>
 
 
         {/* Desktop Nav Links */}

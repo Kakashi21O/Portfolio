@@ -5,6 +5,9 @@ export const timelineData: TimelineChapter[] = [
     id: "chapter-01",
     title: "The Beginning",
     age: "4th Grade",
+    description: "Curiosity sparked in the school computer lab watching HTML come alive.",
+    icon: "🌐",
+    color: "#e34c26",
     story: [
       "One day, during a computer class, the PT teacher allowed students to visit the computer lab.",
       "There, I noticed a senior student writing HTML code.",
@@ -15,6 +18,9 @@ export const timelineData: TimelineChapter[] = [
   {
     id: "chapter-02",
     title: "First Laptop",
+    description: "Gained a dedicated machine to explore how computers work and build things.",
+    icon: "💻",
+    color: "#3b82f6",
     story: [
       "After that experience, I asked my parents for a laptop.",
       "It wasn't about playing games—it was about understanding how computers worked and learning to create things myself.",
@@ -25,6 +31,9 @@ export const timelineData: TimelineChapter[] = [
     id: "chapter-03",
     title: "Learning Python",
     age: "9th Grade",
+    description: "Ventured into programming fundamentals and discovered the joy of problem-solving.",
+    icon: "🐍",
+    color: "#3776ab",
     story: [
       "I began learning Python.",
       "Initially it was basic programming—variables, loops, functions, and operators.",
@@ -34,6 +43,9 @@ export const timelineData: TimelineChapter[] = [
   {
     id: "chapter-04",
     title: "Discovering Backend Development",
+    description: "Ventured behind the scenes into APIs, automation, WebSockets, and servers.",
+    icon: "⚙️",
+    color: "#10b981",
     story: [
       "As I became more comfortable with Python, I started exploring APIs, Automation, WebSockets, and Backend Development.",
       "I enjoyed building systems that worked behind the scenes.",
@@ -43,6 +55,9 @@ export const timelineData: TimelineChapter[] = [
   {
     id: "chapter-05",
     title: "Discord Automation",
+    description: "Engineered bots and automation, mastering async patterns and networking.",
+    icon: "🤖",
+    color: "#5865f2",
     story: [
       "I spent several years experimenting with Discord bots and automation projects.",
       "Some projects explored advanced automation techniques and APIs.",
@@ -52,6 +67,9 @@ export const timelineData: TimelineChapter[] = [
   {
     id: "chapter-06",
     title: "Today",
+    description: "Specializing in FastAPI, Docker, DevOps, AI, and scalable backend systems.",
+    icon: "🚀",
+    color: "#f59e0b",
     story: [
       "Currently exploring FastAPI, Docker, Linux, DevOps, and Artificial Intelligence.",
       "My focus is building scalable backend applications while continuously improving my engineering skills."

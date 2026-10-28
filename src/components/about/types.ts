@@ -3,6 +3,9 @@ export interface TimelineChapter {
   title: string;
   age?: string;
   story: string[];
+  description?: string;
+  icon?: string;
+  color?: string;
 }
 
 export interface Interest {

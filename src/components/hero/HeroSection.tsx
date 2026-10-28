@@ -168,9 +168,6 @@ export function HeroSection() {
         onClick={scrollDown}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group max-md:hidden"
       >
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground group-hover:text-primary transition-colors">
-          Scroll to explore
-        </span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
