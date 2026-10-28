@@ -1,131 +1,50 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
   <defs>
-    <!-- Background gradient - dark navy -->
     <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0a0e1a"/>
       <stop offset="100%" stop-color="#050810"/>
     </linearGradient>
-
-    <!-- Blue outer glow filter -->
-    <filter id="blueGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
-      <feFlood flood-color="#1e6fff" flood-opacity="0.9" result="color"/>
-      <feComposite in="color" in2="blur" operator="in" result="glow"/>
-      <feMerge>
-        <feMergeNode in="glow"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <!-- Strong blue glow for Y -->
     <filter id="yGlow" x="-40%" y="-40%" width="180%" height="180%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feFlood flood-color="#2979ff" flood-opacity="1" result="color"/>
       <feComposite in="color" in2="blur" operator="in" result="glow"/>
-      <feMerge>
-        <feMergeNode in="glow"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-
-    <!-- Chrome gradient for M -->
     <linearGradient id="mChrome" x1="0" y1="0" x2="0.3" y2="1">
       <stop offset="0%" stop-color="#e8f0ff"/>
-      <stop offset="25%" stop-color="#c8d8ff"/>
-      <stop offset="50%" stop-color="#90b0f0"/>
-      <stop offset="75%" stop-color="#b8d0ff"/>
+      <stop offset="30%" stop-color="#b8d0ff"/>
+      <stop offset="60%" stop-color="#90b0f0"/>
       <stop offset="100%" stop-color="#e0ecff"/>
     </linearGradient>
-
-    <!-- Blue gradient for Y -->
     <linearGradient id="yBlue" x1="0" y1="0" x2="0.5" y2="1">
       <stop offset="0%" stop-color="#60a0ff"/>
-      <stop offset="30%" stop-color="#2060ff"/>
-      <stop offset="60%" stop-color="#0040e0"/>
+      <stop offset="35%" stop-color="#2060ff"/>
       <stop offset="100%" stop-color="#0020a0"/>
     </linearGradient>
-
-    <!-- Diagonal highlight for M (metallic sheen) -->
     <linearGradient id="mSheen" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
-      <stop offset="40%" stop-color="#a0c0ff" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-
-    <!-- Y highlight -->
-    <linearGradient id="ySheen" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#80b0ff" stop-opacity="0.2"/>
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
-
-    <!-- Border glow gradient -->
     <linearGradient id="borderGlow" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#2060ff" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#0a30c0" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#4080ff" stop-opacity="0.8"/>
+      <stop offset="0%" stop-color="#2060ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#4080ff" stop-opacity="0.9"/>
     </linearGradient>
   </defs>
-
-  <!-- Background rounded square -->
   <rect width="256" height="256" rx="52" ry="52" fill="url(#bgGrad)"/>
-
-  <!-- Blue border glow -->
-  <rect width="252" height="252" x="2" y="2" rx="50" ry="50" fill="none"
-        stroke="url(#borderGlow)" stroke-width="3" opacity="0.9"/>
-  <rect width="246" height="246" x="5" y="5" rx="47" ry="47" fill="none"
-        stroke="#1a4fff" stroke-width="1" opacity="0.5"/>
-
-  <!-- Diagonal stripe accents (like in the logo image) -->
-  <line x1="170" y1="20" x2="250" y2="120" stroke="#1e50ff" stroke-width="1.5" opacity="0.25"/>
-  <line x1="185" y1="20" x2="256" y2="110" stroke="#1e50ff" stroke-width="1" opacity="0.15"/>
-  <line x1="20" y1="180" x2="90" y2="250" stroke="#1e50ff" stroke-width="1" opacity="0.15"/>
-
-  <!-- === M LETTER === -->
-  <!-- M drop shadow / depth -->
-  <path d="M28,195 L28,75 L62,75 L95,135 L128,75 L162,75 L162,195 L132,195 L132,130 L105,180 L85,180 L58,130 L58,195 Z"
-        fill="#060818" opacity="0.6" transform="translate(4,5)"/>
-
-  <!-- M dark side face (3D depth) -->
-  <path d="M28,195 L28,75 L62,75 L95,135 L128,75 L162,75 L162,195 L132,195 L132,130 L105,180 L85,180 L58,130 L58,195 Z"
-        fill="#0a1840" transform="translate(3,4)"/>
-
-  <!-- M main body -->
-  <path d="M28,195 L28,75 L62,75 L95,135 L128,75 L162,75 L162,195 L132,195 L132,130 L105,180 L85,180 L58,130 L58,195 Z"
-        fill="url(#mChrome)"/>
-
-  <!-- M metallic sheen overlay -->
-  <path d="M28,195 L28,75 L62,75 L95,135 L128,75 L162,75 L162,195 L132,195 L132,130 L105,180 L85,180 L58,130 L58,195 Z"
-        fill="url(#mSheen)" opacity="0.6"/>
-
-  <!-- M dark outline/edge for 3D separation -->
-  <path d="M28,195 L28,75 L62,75 L95,135 L128,75 L162,75 L162,195 L132,195 L132,130 L105,180 L85,180 L58,130 L58,195 Z"
-        fill="none" stroke="#0020a0" stroke-width="2" opacity="0.8"/>
-
-  <!-- === Y LETTER === -->
-  <!-- Y drop shadow / depth -->
-  <path d="M165,75 L196,75 L220,118 L244,75 L228,75 L220,90 L212,75 L165,75 Z M206,140 L206,195 L234,195 L234,140 L244,75 L228,75 L220,105 L212,75 L196,75 Z"
-        fill="#060818" opacity="0.6" transform="translate(4,5)"/>
-
-  <!-- Y dark side for depth -->
-  <path d="M165,75 L196,75 L220,118 L244,75 L228,75 L220,90 L212,75 L165,75 Z M206,140 L206,195 L234,195 L234,140 L244,75 L228,75 L220,105 L212,75 L196,75 Z"
-        fill="#0018a0" transform="translate(3,4)"/>
-
-  <!-- Y main body -->
+  <rect width="252" height="252" x="2" y="2" rx="50" ry="50" fill="none" stroke="url(#borderGlow)" stroke-width="3"/>
+  <rect width="246" height="246" x="5" y="5" rx="47" ry="47" fill="none" stroke="#1a4fff" stroke-width="1" opacity="0.5"/>
+  <!-- M shadow -->
+  <path d="M28,195 L28,75 L62,75 L95,135 L128,75 L162,75 L162,195 L132,195 L132,130 L105,180 L85,180 L58,130 L58,195 Z" fill="#060818" opacity="0.7" transform="translate(4,5)"/>
+  <!-- M body -->
+  <path d="M28,195 L28,75 L62,75 L95,135 L128,75 L162,75 L162,195 L132,195 L132,130 L105,180 L85,180 L58,130 L58,195 Z" fill="url(#mChrome)"/>
+  <path d="M28,195 L28,75 L62,75 L95,135 L128,75 L162,75 L162,195 L132,195 L132,130 L105,180 L85,180 L58,130 L58,195 Z" fill="url(#mSheen)" opacity="0.5"/>
+  <path d="M28,195 L28,75 L62,75 L95,135 L128,75 L162,75 L162,195 L132,195 L132,130 L105,180 L85,180 L58,130 L58,195 Z" fill="none" stroke="#0020a0" stroke-width="2"/>
+  <!-- Y shadow -->
+  <path d="M165,75 L200,75 L220,115 L240,75 L228,75 L220,92 L212,75 L165,75 Z M208,128 L208,195 L232,195 L232,128 L220,108 Z" fill="#060818" opacity="0.7" transform="translate(4,5)"/>
+  <!-- Y body -->
   <g filter="url(#yGlow)">
     <path d="M165,75 L200,75 L220,115 L240,75 L228,75 L220,92 L212,75 L165,75 Z" fill="url(#yBlue)"/>
     <path d="M208,128 L208,195 L232,195 L232,128 L220,108 Z" fill="url(#yBlue)"/>
   </g>
-
-  <!-- Y sheen overlay -->
-  <path d="M165,75 L200,75 L220,115 L240,75 L228,75 L220,92 L212,75 L165,75 Z" fill="url(#ySheen)" opacity="0.7"/>
-  <path d="M208,128 L208,195 L232,195 L232,128 L220,108 Z" fill="url(#ySheen)" opacity="0.5"/>
-
-  <!-- Y dark outline for 3D edge -->
-  <path d="M165,75 L200,75 L220,115 L240,75 L228,75 L220,92 L212,75 L165,75 Z M208,128 L208,195 L232,195 L232,128 L220,108 Z"
-        fill="none" stroke="#001080" stroke-width="2" opacity="0.9"/>
-
-  <!-- Bottom edge glow line on border -->
-  <rect width="256" height="256" rx="52" ry="52" fill="none"
-        stroke="#3060ff" stroke-width="1.5" opacity="0.3"/>
+  <path d="M165,75 L200,75 L220,115 L240,75 L228,75 L220,92 L212,75 L165,75 Z M208,128 L208,195 L232,195 L232,128 L220,108 Z" fill="none" stroke="#001080" stroke-width="2"/>
 </svg>

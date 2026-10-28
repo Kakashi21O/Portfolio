@@ -25,9 +25,11 @@ export const metadata: Metadata = {
   title: "Mantu Yadav",
   icons: {
     icon: [
+      { url: "/icon.png", type: "image/png", sizes: "64x64" },
       { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico" },
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
     ],
+    shortcut: "/icon.png",
   },
   description:
     "Portfolio of Mantu Yadav — Python Developer, Backend Engineer, and FastAPI specialist building scalable systems and clean interfaces.",
