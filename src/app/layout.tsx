@@ -22,9 +22,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Mantu Yadav — Python & Backend Developer",
-    template: "%s | Mantu Yadav",
+  title: "Mantu Yadav",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
   },
   description:
     "Portfolio of Mantu Yadav — Python Developer, Backend Engineer, and FastAPI specialist building scalable systems and clean interfaces.",

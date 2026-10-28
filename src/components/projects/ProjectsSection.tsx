@@ -6,8 +6,7 @@ import { Search } from "lucide-react";
 import { useProjectsData } from "@/hooks/useProjectsData";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectFilters } from "./ProjectFilters";
-import { ProjectDetailsModal } from "./ProjectDetailsModal";
-import type { Project, ProjectCategory } from "./types";
+import type { ProjectCategory } from "./types";
 
 const LATEST_COUNT = 4;
 
@@ -15,7 +14,6 @@ export function ProjectsSection() {
   const { projects, isFetched, lastUpdated } = useProjectsData();
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("Starred");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filteredProjects = useMemo(() => {
     let base = projects;
@@ -157,7 +155,6 @@ export function ProjectsSection() {
               <ProjectCard
                 project={project}
                 index={index}
-                onOpenDetails={setSelectedProject}
               />
             </motion.div>
           ))}
@@ -177,12 +174,6 @@ export function ProjectsSection() {
         </motion.div>
       )}
 
-      {/* Project Details Modal */}
-      <ProjectDetailsModal
-        project={selectedProject!}
-        isOpen={selectedProject !== null}
-        onClose={() => setSelectedProject(null)}
-      />
     </section>
   );
 }

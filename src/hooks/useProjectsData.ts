@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import fallbackData from "../../data/projects.json";
 import type { Project } from "@/components/projects/types";
 
-const CACHE_KEY = "portfolio_projects_data_cache_v1";
+const CACHE_KEY = "portfolio_projects_data_cache_v3";
 const CACHE_TTL_MS = 12 * 60 * 60 * 1000; // 12 hours
 
 const GH_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
@@ -12,6 +12,10 @@ const GH_USERNAME = "Kakashi21O";
 const GH_HEADERS: HeadersInit = {
   Accept: "application/vnd.github.v3+json",
   ...(GH_TOKEN ? { Authorization: `Bearer ${GH_TOKEN}` } : {}),
+};
+
+const REPO_DEMO_OVERRIDES: Record<string, string> = {
+  cleancord: "https://github.com/Kakashi21O/CleanCord/releases/download/v1.0.0/CleanCord.exe",
 };
 
 const LANGUAGE_TO_CATEGORY: Record<string, string> = {
@@ -119,7 +123,7 @@ function mapRepoToProject(repo: {
     category,
     technologies,
     github: repo.html_url,
-    demo: repo.homepage?.trim() || "",
+    demo: REPO_DEMO_OVERRIDES[repo.name.toLowerCase()] || repo.homepage?.trim() || "",
     documentation: "",
     problem: "",
     planning: "",
@@ -220,21 +224,30 @@ export function useProjectsData() {
             new Date(a.pushed_at || a.updated_at).getTime()
         );
 
-        // 5. Mark manually selected repositories as starred
-        const STARRED_REPOS = new Set([
+        // 5. Explicit order for starred repositories (1. cleancord, 2. ditto, 3. sih, 4. miningcraft, 5. codeazy, 6. goodnight)
+        const STARRED_ORDER = [
           "cleancord",
-          "miningcraft",
           "ditto",
-          "goodnight-pc",
           "sih-2026",
-          "valo-ui",
+          "miningcraft",
           "codeazy",
-        ]);
+          "goodnight-pc",
+        ];
+        const STARRED_REPOS = new Set(STARRED_ORDER);
 
         const mappedProjects: Project[] = sorted.map((repo) => ({
           ...mapRepoToProject(repo as Parameters<typeof mapRepoToProject>[0]),
           featured: STARRED_REPOS.has(repo.name.toLowerCase()),
         }));
+
+        mappedProjects.sort((a, b) => {
+          const indexA = STARRED_ORDER.indexOf(a.id);
+          const indexB = STARRED_ORDER.indexOf(b.id);
+          if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+          if (indexA !== -1) return -1;
+          if (indexB !== -1) return 1;
+          return 0;
+        });
         
         if (isMounted) {
           setProjects(mappedProjects);
