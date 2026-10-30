@@ -21,16 +21,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export const metadata: Metadata = {
   title: "Mantu Yadav",
   icons: {
     icon: [
-      { url: "/favicon.svg?v=3", type: "image/svg+xml" },
-      { url: "/icon.png?v=3", type: "image/png", sizes: "192x192" },
-      { url: "/favicon.ico?v=3", sizes: "any" },
+      { url: `${basePath}/favicon.svg?v=4`, type: "image/svg+xml" },
+      { url: `${basePath}/icon.png?v=4`, type: "image/png", sizes: "192x192" },
+      { url: `${basePath}/favicon.ico?v=4`, sizes: "any" },
     ],
-    shortcut: "/favicon.ico?v=3",
-    apple: "/icon.png?v=3",
+    shortcut: `${basePath}/favicon.ico?v=4`,
+    apple: `${basePath}/icon.png?v=4`,
   },
   description:
     "Portfolio of Mantu Yadav — Python Developer, Backend Engineer, and FastAPI specialist building scalable systems and clean interfaces.",
