@@ -25,11 +25,12 @@ export const metadata: Metadata = {
   title: "Mantu Yadav",
   icons: {
     icon: [
-      { url: "/icon.png", type: "image/png", sizes: "64x64" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+      { url: "/favicon.svg?v=3", type: "image/svg+xml" },
+      { url: "/icon.png?v=3", type: "image/png", sizes: "192x192" },
+      { url: "/favicon.ico?v=3", sizes: "any" },
     ],
-    shortcut: "/icon.png",
+    shortcut: "/favicon.ico?v=3",
+    apple: "/icon.png?v=3",
   },
   description:
     "Portfolio of Mantu Yadav — Python Developer, Backend Engineer, and FastAPI specialist building scalable systems and clean interfaces.",
