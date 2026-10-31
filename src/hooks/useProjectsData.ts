@@ -7,11 +7,9 @@ import type { Project } from "@/components/projects/types";
 const CACHE_KEY = "portfolio_projects_data_cache_v3";
 const CACHE_TTL_MS = 12 * 60 * 60 * 1000; // 12 hours
 
-const GH_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
 const GH_USERNAME = "Kakashi21O";
 const GH_HEADERS: HeadersInit = {
   Accept: "application/vnd.github.v3+json",
-  ...(GH_TOKEN ? { Authorization: `Bearer ${GH_TOKEN}` } : {}),
 };
 
 const REPO_DEMO_OVERRIDES: Record<string, string> = {

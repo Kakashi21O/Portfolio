@@ -7,10 +7,8 @@ import type { GitHubData, Language, PinnedRepository, ActivityItem } from "@/com
 const CACHE_KEY = "portfolio_github_data_cache_v3";
 const CACHE_TTL_MS = 12 * 60 * 60 * 1000; // 12 hours
 
-const GH_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
 const GH_HEADERS: HeadersInit = {
   Accept: "application/vnd.github.v3+json",
-  ...(GH_TOKEN ? { Authorization: `Bearer ${GH_TOKEN}` } : {}),
 };
 
 const LANGUAGE_COLORS: Record<string, string> = {

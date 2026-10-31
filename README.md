@@ -50,7 +50,6 @@ A sleek, modern developer portfolio built with **Next.js 16 (Turbopack)**, **Rea
 │   └── robots.txt        # Search engine crawler directives
 ├── src/
 │   ├── app/
-│   │   ├── api/contact/  # OTP endpoints (request-otp, verify-otp, resend-otp)
 │   │   ├── certificates/ # Certificates gallery page
 │   │   ├── icon.png      # Next.js auto-served /icon.png (top-priority favicon)
 │   │   ├── favicon.ico   # App-level favicon
@@ -60,7 +59,7 @@ A sleek, modern developer portfolio built with **Next.js 16 (Turbopack)**, **Rea
 │   │   ├── about/        # About, avatar, timeline, facts, code window
 │   │   ├── animations/   # Smooth scroll wrapper
 │   │   ├── certificates/ # Certificates modal and conditional navbar
-│   │   ├── contact/      # OTP-verified contact form
+│   │   ├── contact/      # Direct static contact form
 │   │   ├── cursor/       # Custom cursor context and magnetic effects
 │   │   ├── footer/       # Footer section
 │   │   ├── github/       # GitHub repos, stats cards, activity feed
@@ -97,12 +96,7 @@ npm install
 Create `.env.local`:
 
 ```env
-RESEND_API_KEY=           # Resend API key
-UPSTASH_REDIS_REST_URL=   # Upstash Redis REST URL
-UPSTASH_REDIS_REST_TOKEN= # Upstash Redis REST Token
-CONTACT_EMAIL=            # Your inbox for contact form messages
-EMAIL_FROM=               # Verified sender on Resend
-NEXT_PUBLIC_GITHUB_TOKEN= # (Optional) GitHub PAT for higher API rate limits
+NEXT_PUBLIC_WEB3FORMS_KEY= # (Optional) Get a free key at https://web3forms.com
 ```
 
 ### 4. Dev Server
