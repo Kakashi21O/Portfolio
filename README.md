@@ -2,7 +2,7 @@
 
 A sleek, modern developer portfolio built with **Next.js 16 (Turbopack)**, **React 19**, **Tailwind CSS v4**, and **Framer Motion**. Features interactive 3D hero elements, smooth Lenis scrolling, dynamic GitHub project cards, skills showcase, audio player, certificate explorer, and an OTP-verified contact system.
 
-🌐 **Live:** [mantuyadav.dev](https://mantuyadav.dev)
+🌐 **Live:** [mantuyadav.dev](https://kakashi21o.github.io/Portfolio)
 
 ---
 
